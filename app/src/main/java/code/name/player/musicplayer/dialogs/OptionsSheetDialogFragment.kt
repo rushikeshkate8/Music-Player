@@ -64,14 +64,14 @@ class OptionsSheetDialogFragment : RoundedBottomSheetDialogFragment(), View.OnCl
         loadImageFromStorage()
 
         actionSettings.setOnClickListener(this)
-        actionAbout.setOnClickListener(this)
+       // actionAbout.setOnClickListener(this)
         actionSleepTimer.setOnClickListener(this)
         userInfoContainer.setOnClickListener(this)
         actionEqualizer.setOnClickListener(this)
         actionFolders.setOnClickListener(this)
         actionRate.setOnClickListener(this)
         actionShare.setOnClickListener(this)
-        actionBugReport.setOnClickListener(this)
+       // actionBugReport.setOnClickListener(this)
         buyProContainer.apply {
             setCardBackgroundColor(ThemeStore.accentColor(context!!))
             visibility = if (!App.isProVersion) View.VISIBLE else View.GONE
@@ -89,14 +89,14 @@ class OptionsSheetDialogFragment : RoundedBottomSheetDialogFragment(), View.OnCl
                 mainActivity.setCurrentFragment(FoldersFragment.newInstance(context), true)
             }
             R.id.actionSettings -> NavigationUtil.goToSettings(mainActivity)
-            R.id.actionAbout -> NavigationUtil.goToAbout(mainActivity)
+           // R.id.actionAbout -> NavigationUtil.goToAbout(mainActivity)
             R.id.actionSleepTimer -> if (fragmentManager != null) {
                 SleepTimerDialog().show(fragmentManager!!, TAG)
             }
             R.id.userInfoContainer -> NavigationUtil.goToUserInfo(mainActivity)
             R.id.actionRate -> NavigationUtil.goToPlayStore(mainActivity)
             R.id.actionShare -> shareApp()
-            R.id.actionBugReport -> prepareBugReport()
+           // R.id.actionBugReport -> prepareBugReport()
             R.id.actionEqualizer -> NavigationUtil.openEqualizer(mainActivity)
 
         }
