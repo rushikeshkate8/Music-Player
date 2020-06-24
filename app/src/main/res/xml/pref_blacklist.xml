@@ -1,0 +1,14 @@
+<androidx.preference.PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <code.name.player.appthemehelper.common.prefs.supportv7.ATEPreferenceCategory android:title="Blacklist">
+
+        <code.name.player.musicplayer.preferences.BlacklistPreference
+            android:key="blacklist"
+            android:summary="@string/pref_summary_blacklist"
+            android:title="@string/pref_title_blacklist"
+            app:iconSpaceReserved="false" />
+
+    </code.name.player.appthemehelper.common.prefs.supportv7.ATEPreferenceCategory>
+
+</androidx.preference.PreferenceScreen>

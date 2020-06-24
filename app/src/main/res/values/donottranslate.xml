@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="donation_ids" translatable="false">
+        <item>code_name_monkey_donate_1</item>
+        <item>code_name_monkey_donate_2</item>
+        <item>code_name_monkey_donate_3</item>
+        <item>code_name_monkey_donate_4</item>
+        <item>code_name_monkey_donate_5</item>
+        <item>code_name_monkey_donate_6</item>
+        <item>code_name_monkey_donate_7</item>
+    </string-array>
+
+    <string name="app_name" translatable="false">Music Player</string>
+    <string name="google_plus" translatable="false">Google Plus</string>
+    <string name="git_hub" translatable="false">GitHub</string>
+    <string name="social_buttons" translatable="false">Social Buttons</string>
+</resources>

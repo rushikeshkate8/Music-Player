@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_vertical"
+    android:orientation="vertical">
+
+    <SeekBar
+        android:id="@+id/progressSlider"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:maxHeight="3dp"
+        android:paddingStart="24dp"
+        android:paddingEnd="24dp"
+        android:progressDrawable="@drawable/color_progress_seek"
+        android:splitTrack="false"
+        tools:progress="20" />
+
+    <include layout="@layout/player_time" />
+
+    <include layout="@layout/media_button" />
+
+    <include layout="@layout/volume_controls" />
+</LinearLayout>
