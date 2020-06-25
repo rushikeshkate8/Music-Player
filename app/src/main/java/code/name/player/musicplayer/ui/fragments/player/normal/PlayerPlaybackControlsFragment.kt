@@ -29,7 +29,6 @@ import kotlinx.android.synthetic.main.media_button.*
 import kotlinx.android.synthetic.main.player_time.*
 
 class PlayerPlaybackControlsFragment : AbsPlayerControlsFragment() {
-
     private var lastPlaybackControlsColor: Int = 0
     private var lastDisabledPlaybackControlsColor: Int = 0
     private var progressViewUpdateHelper: MusicProgressViewUpdateHelper? = null

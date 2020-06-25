@@ -33,9 +33,15 @@ import android.support.v4.media.session.PlaybackStateCompat;
 import android.telephony.PhoneStateListener;
 import android.telephony.TelephonyManager;
 import android.util.Log;
+import android.view.View;
 import android.widget.Toast;
 
 import com.bumptech.glide.request.transition.Transition;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.MobileAds;
+import com.google.android.gms.ads.initialization.InitializationStatus;
+import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
 
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
@@ -267,7 +273,6 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
     @Override
     public void onCreate() {
         super.onCreate();
-
         final TelephonyManager telephonyManager = (TelephonyManager) getSystemService(TELEPHONY_SERVICE);
         if (telephonyManager != null) {
             telephonyManager.listen(phoneStateListener, PhoneStateListener.LISTEN_NONE);
@@ -345,6 +350,7 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
             @Override
             public void onPause() {
                 pause();
+
             }
 
             @Override
@@ -922,6 +928,7 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
     }
 
     public void play() {
+
         synchronized (this) {
             if (requestFocus()) {
                 if (!playback.isPlaying()) {

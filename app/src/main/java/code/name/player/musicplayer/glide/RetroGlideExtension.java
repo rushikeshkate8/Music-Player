@@ -37,7 +37,7 @@ public final class RetroGlideExtension {
 
     @NonNull
     @GlideOption
-    public static RequestOptions artistOptions(@NonNull RequestOptions requestOptions, Artist artist) {
+    static RequestOptions artistOptions(@NonNull RequestOptions requestOptions , Artist artist) {
         return requestOptions
                 .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
                 .error(R.drawable.default_artist_art)
@@ -57,11 +57,11 @@ public final class RetroGlideExtension {
                 .signature(createSignature(song));
     }
 
-    public static Key createSignature(Artist artist) {
+    private static Key createSignature(Artist artist) {
         return ArtistSignatureUtil.getInstance().getArtistSignature(artist.getName());
     }
 
-    public static Key createSignature(Song song) {
+    private static Key createSignature(Song song) {
         return new MediaStoreSignature("", song.dateModified, 0);
     }
 
@@ -73,7 +73,7 @@ public final class RetroGlideExtension {
         return getArtistModel(artist, CustomArtistImageUtil.Companion.getInstance(App.Companion.getContext()).hasCustomArtistImage(artist), forceDownload);
     }
 
-    public static Object getArtistModel(Artist artist, boolean hasCustomImage, boolean forceDownload) {
+    private static Object getArtistModel(Artist artist , boolean hasCustomImage , boolean forceDownload) {
         if (!hasCustomImage) {
             return new ArtistImage(artist.getName(), forceDownload);
         } else {

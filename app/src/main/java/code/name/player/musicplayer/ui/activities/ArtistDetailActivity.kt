@@ -283,7 +283,7 @@ class ArtistDetailActivity : AbsSlidingMusicPanelActivity(), ArtistDetailContrac
                         setColors(color)
                     }
                 })
-        forceDownload = false;
+        forceDownload = false
     }
 
     private fun setColors(color: Int) {

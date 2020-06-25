@@ -13,6 +13,9 @@ import code.name.player.musicplayer.Constants.SHUFFLE_MODE_CHANGED
 import code.name.player.musicplayer.R
 import code.name.player.musicplayer.helper.MusicPlayerRemote
 import code.name.player.musicplayer.interfaces.MusicServiceEventListener
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.AdView
+import com.google.android.gms.ads.MobileAds
 import java.lang.ref.WeakReference
 import java.util.*
 
@@ -20,7 +23,6 @@ import java.util.*
 abstract class AbsMusicServiceActivity : AbsBaseActivity(), MusicServiceEventListener {
 
     private val mMusicServiceEventListeners = ArrayList<MusicServiceEventListener>()
-
     private var serviceToken: MusicPlayerRemote.ServiceToken? = null
     private var musicStateReceiver: MusicStateReceiver? = null
     private var receiverRegistered: Boolean = false

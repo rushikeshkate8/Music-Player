@@ -10,10 +10,15 @@ import android.os.PowerManager;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import android.util.Log;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Toast;
+
+import com.google.android.gms.ads.AdView;
 
 import code.name.player.musicplayer.R;
 import code.name.player.musicplayer.service.playback.Playback;
+import code.name.player.musicplayer.ui.activities.MainActivity;
 import code.name.player.musicplayer.util.PreferenceUtil;
 
 /**
@@ -21,14 +26,12 @@ import code.name.player.musicplayer.util.PreferenceUtil;
  */
 public class MultiPlayer implements Playback, MediaPlayer.OnErrorListener, MediaPlayer.OnCompletionListener {
     public static final String TAG = MultiPlayer.class.getSimpleName();
-
     private MediaPlayer mCurrentMediaPlayer = new MediaPlayer();
     private MediaPlayer mNextMediaPlayer;
 
     private Context context;
     @Nullable
     private Playback.PlaybackCallbacks callbacks;
-
     private boolean mIsInitialized = false;
 
     /**

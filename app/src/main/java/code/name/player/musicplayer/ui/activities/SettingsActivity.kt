@@ -16,11 +16,14 @@ import code.name.player.musicplayer.ui.activities.base.AbsBaseActivity
 import code.name.player.musicplayer.ui.fragments.settings.MainSettingsFragment
 import code.name.player.musicplayer.util.PreferenceUtil
 import com.afollestad.materialdialogs.color.ColorChooserDialog
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.AdView
+import com.google.android.gms.ads.MobileAds
 import kotlinx.android.synthetic.main.activity_settings.*
 
 
 class SettingsActivity : AbsBaseActivity(), ColorChooserDialog.ColorCallback, SharedPreferences.OnSharedPreferenceChangeListener {
-
+    lateinit var mAdView : AdView
     private val fragmentManager = supportFragmentManager
 
     override fun onColorSelection(dialog: ColorChooserDialog, @ColorInt selectedColor: Int) {
@@ -47,7 +50,10 @@ class SettingsActivity : AbsBaseActivity(), ColorChooserDialog.ColorCallback, Sh
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_settings)
-
+        MobileAds.initialize(this) {}
+        mAdView = findViewById(R.id.adViewSetting)
+        val adRequest = AdRequest.Builder().build()
+        mAdView.loadAd(adRequest)
         setStatusbarColorAuto()
         setNavigationbarColorAuto()
 

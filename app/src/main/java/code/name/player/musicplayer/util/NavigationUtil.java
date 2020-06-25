@@ -17,21 +17,16 @@ import code.name.player.musicplayer.R;
 import code.name.player.musicplayer.helper.MusicPlayerRemote;
 import code.name.player.musicplayer.model.Genre;
 import code.name.player.musicplayer.model.Playlist;
-import code.name.player.musicplayer.ui.activities.AboutActivity;
 import code.name.player.musicplayer.ui.activities.AlbumDetailsActivity;
 import code.name.player.musicplayer.ui.activities.ArtistDetailActivity;
 import code.name.player.musicplayer.ui.activities.EqualizerActivity;
 import code.name.player.musicplayer.ui.activities.GenreDetailsActivity;
-import code.name.player.musicplayer.ui.activities.LicenseActivity;
 import code.name.player.musicplayer.ui.activities.LyricsActivity;
 import code.name.player.musicplayer.ui.activities.PlayingQueueActivity;
 import code.name.player.musicplayer.ui.activities.PlaylistDetailActivity;
-import code.name.player.musicplayer.ui.activities.PurchaseActivity;
 import code.name.player.musicplayer.ui.activities.SearchActivity;
 import code.name.player.musicplayer.ui.activities.SettingsActivity;
-import code.name.player.musicplayer.ui.activities.SupportDevelopmentActivity;
 import code.name.player.musicplayer.ui.activities.UserInfoActivity;
-import code.name.player.musicplayer.ui.activities.WhatsNewActivity;
 
 import static code.name.player.musicplayer.Constants.RATE_ON_GOOGLE_PLAY;
 import static code.name.player.musicplayer.util.RetroUtil.openUrl;
@@ -106,7 +101,7 @@ public class NavigationUtil {
     }
 
     public static void goToProVersion(@NonNull Context context) {
-        ActivityCompat.startActivity(context, new Intent(context, PurchaseActivity.class), null);
+
     }
 
     public static void goToSettings(@NonNull Activity activity) {
@@ -121,23 +116,13 @@ public class NavigationUtil {
         ActivityCompat.startActivity(activity, new Intent(activity, UserInfoActivity.class), null);
     }
 
-    public static void goToOpenSource(@NonNull Activity activity) {
-        ActivityCompat.startActivity(activity, new Intent(activity, LicenseActivity.class), null);
-    }
 
     public static void goToSearch(Activity activity) {
         ActivityCompat.startActivity(activity, new Intent(activity, SearchActivity.class), null);
-    }
-
-    public static void goToSupportDevelopment(Activity activity) {
-        //ActivityCompat.startActivity(activity, new Intent(activity, SupportDevelopmentActivity.class), null);
     }
 
     public static void goToPlayStore(Activity activity) {
         openUrl(activity, RATE_ON_GOOGLE_PLAY);
     }
 
-    public static void gotoWhatNews(Activity activity) {
-        //ActivityCompat.startActivity(activity, new Intent(activity, WhatsNewActivity.class), null);
-    }
 }

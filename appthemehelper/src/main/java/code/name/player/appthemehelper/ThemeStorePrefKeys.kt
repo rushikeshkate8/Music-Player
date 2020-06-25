@@ -1,8 +1,5 @@
 package code.name.player.appthemehelper
 
-/**
- * @author Aidan Follestad (afollestad), Karim Abou Zeid (kabouzeid)
- */
 internal interface ThemeStorePrefKeys {
     companion object {
 

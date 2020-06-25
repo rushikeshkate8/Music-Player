@@ -15,9 +15,7 @@ import code.name.player.appthemehelper.util.ToolbarContentTintHelper
 
 import android.view.View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR
 
-/**
- * @author Karim Abou Zeid (kabouzeid)
- */
+
 object ATH {
 
     @SuppressLint("CommitPrefEdits")

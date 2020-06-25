@@ -23,6 +23,7 @@ import code.name.player.musicplayer.ui.fragments.base.AbsPlayerControlsFragment
 import code.name.player.musicplayer.util.MusicUtil
 import code.name.player.musicplayer.util.PreferenceUtil
 import code.name.player.musicplayer.util.ViewUtil
+import com.google.android.gms.ads.AdView
 import kotlinx.android.synthetic.main.fragment_full_player_controls.*
 import kotlinx.android.synthetic.main.player_time.*
 

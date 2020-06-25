@@ -14,7 +14,7 @@
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
 
     <application
-        android:name="code.name.player.musicplayer.App"
+        android:name=".App"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -22,14 +22,25 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.RetroMusic.Light"
         android:usesCleartextTraffic="true">
+
+        <meta-data
+            android:name="com.google.android.gms.ads.APPLICATION_ID"
+            android:value="ca-app-pub-3940256099942544~3347511713" />
+
+        <activity android:name=".ui.activities.SplashScreenActivity"
+            android:theme="@style/SplashScreenTheme">
+            <intent-filter>
+                <category android:name="android.intent.category.LAUNCHER" />
+
+                <action android:name="android.intent.action.MAIN" />
+            </intent-filter>
+        </activity>
         <activity
-            android:name="code.name.player.musicplayer.ui.activities.MainActivity"
+            android:name=".ui.activities.MainActivity"
             android:label="@string/app_name">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
                 <action android:name="android.intent.action.MUSIC_PLAYER" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
                 <category android:name="android.intent.category.APP_MUSIC" />
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
@@ -95,58 +106,49 @@
                 <data android:mimeType="vnd.android.cursor.dir/audio" />
             </intent-filter>
         </activity>
-        <activity android:name="code.name.player.musicplayer.ui.activities.AlbumDetailsActivity" />
-        <activity android:name="code.name.player.musicplayer.ui.activities.ArtistDetailActivity" />
-        <activity android:name="code.name.player.musicplayer.ui.activities.PlaylistDetailActivity" />
-        <activity android:name="code.name.player.musicplayer.ui.activities.PlayingQueueActivity" />
-        <activity android:name="code.name.player.musicplayer.ui.activities.AboutActivity" />
-        <activity android:name="code.name.player.musicplayer.ui.activities.tageditor.AlbumTagEditorActivity" />
-        <activity android:name="code.name.player.musicplayer.ui.activities.tageditor.SongTagEditorActivity" />
-        <activity android:name="code.name.player.musicplayer.ui.activities.SettingsActivity" />
+        <activity android:name=".ui.activities.AlbumDetailsActivity" />
+        <activity android:name=".ui.activities.ArtistDetailActivity" />
+        <activity android:name=".ui.activities.PlaylistDetailActivity" />
+        <activity android:name=".ui.activities.PlayingQueueActivity" />
+        <activity android:name=".ui.activities.tageditor.AlbumTagEditorActivity" />
+        <activity android:name=".ui.activities.tageditor.SongTagEditorActivity" />
+        <activity android:name=".ui.activities.SettingsActivity" />
         <activity
-            android:name="code.name.player.musicplayer.ui.activities.SearchActivity"
+            android:name=".ui.activities.SearchActivity"
             android:windowSoftInputMode="stateVisible" />
-        <activity android:name="code.name.player.musicplayer.ui.activities.LyricsActivity" />
-        <activity android:name="code.name.player.musicplayer.ui.activities.UserInfoActivity" />
-
-        <activity android:name="code.name.player.musicplayer.ui.activities.SupportDevelopmentActivity" />
-        <activity android:name="code.name.player.musicplayer.ui.activities.GenreDetailsActivity" />
-        <activity android:name="code.name.player.musicplayer.ui.activities.LicenseActivity" />
-        <activity android:name="code.name.player.musicplayer.ui.activities.PurchaseActivity" />
-        <activity android:name="code.name.player.musicplayer.ui.activities.EqualizerActivity" />
+        <activity android:name=".ui.activities.LyricsActivity" />
+        <activity android:name=".ui.activities.UserInfoActivity" />
+        <activity android:name=".ui.activities.GenreDetailsActivity" />
+        <activity android:name=".ui.activities.EqualizerActivity" />
         <activity
-            android:name="code.name.player.musicplayer.ui.activities.ErrorHandlerActivity"
+            android:name=".ui.activities.ErrorHandlerActivity"
             android:immersive="true"
             android:label="@string/error"
             android:launchMode="singleInstance"
             android:screenOrientation="portrait"
             android:theme="@style/ErrorHandlingTheme" />
-        <activity android:name="code.name.player.musicplayer.ui.activities.WhatsNewActivity" />
-        <activity android:name="code.name.player.musicplayer.ui.activities.bugreport.BugReportActivity" />
-        <activity android:name="code.name.player.musicplayer.ui.activities.LockScreenActivity" />
+        <activity android:name=".ui.activities.LockScreenActivity" />
         <activity
-            android:name="code.name.player.musicplayer.appshortcuts.AppShortcutLauncherActivity"
+            android:name=".appshortcuts.AppShortcutLauncherActivity"
             android:launchMode="singleInstance"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
 
         <service
-            android:name="code.name.player.musicplayer.service.MusicService"
+            android:name=".service.MusicService"
             android:enabled="true" />
-
         <service
-            android:name="code.name.player.musicplayer.service.WearBrowserService"
+            android:name=".service.WearBrowserService"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.media.browse.MediaBrowserService" />
             </intent-filter>
         </service>
 
-        <receiver android:name="code.name.player.musicplayer.service.MediaButtonIntentReceiver">
+        <receiver android:name=".service.MediaButtonIntentReceiver">
             <intent-filter>
                 <action android:name="android.intent.action.MEDIA_BUTTON" />
             </intent-filter>
         </receiver>
-
 
         <meta-data
             android:name="android.max_aspect"
@@ -174,14 +176,14 @@
                 android:resource="@xml/provider_paths" />
         </provider>
 
-        <receiver android:name="code.name.player.musicplayer.appwidgets.BootReceiver">
+        <receiver android:name=".appwidgets.BootReceiver">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
                 <action android:name="android.intent.action.QUICKBOOT_POWERON" />
             </intent-filter>
         </receiver>
         <receiver
-            android:name="code.name.player.musicplayer.appwidgets.AppWidgetBig"
+            android:name=".appwidgets.AppWidgetBig"
             android:exported="false"
             android:label="@string/app_widget_big_name">
             <intent-filter>
@@ -193,7 +195,7 @@
                 android:resource="@xml/app_widget_big_info" />
         </receiver>
         <receiver
-            android:name="code.name.player.musicplayer.appwidgets.AppWidgetClassic"
+            android:name=".appwidgets.AppWidgetClassic"
             android:exported="false"
             android:label="@string/app_widget_classic_name">
             <intent-filter>
@@ -205,7 +207,7 @@
                 android:resource="@xml/app_widget_classic_info" />
         </receiver>
         <receiver
-            android:name="code.name.player.musicplayer.appwidgets.AppWidgetSmall"
+            android:name=".appwidgets.AppWidgetSmall"
             android:exported="false"
             android:label="@string/app_widget_small_name">
             <intent-filter>
@@ -217,7 +219,7 @@
                 android:resource="@xml/app_widget_small_info" />
         </receiver>
         <receiver
-            android:name="code.name.player.musicplayer.appwidgets.AppWidgetText"
+            android:name=".appwidgets.AppWidgetText"
             android:exported="false"
             android:label="@string/app_widget_text_name">
             <intent-filter>
@@ -229,7 +231,7 @@
                 android:resource="@xml/app_widget_text" />
         </receiver>
         <receiver
-            android:name="code.name.player.musicplayer.appwidgets.AppWidgetCard"
+            android:name=".appwidgets.AppWidgetCard"
             android:exported="false"
             android:label="@string/app_widget_card_name">
             <intent-filter>
@@ -240,7 +242,6 @@
                 android:name="android.appwidget.provider"
                 android:resource="@xml/app_widget_card_info" />
         </receiver>
-
-
     </application>
+
 </manifest>

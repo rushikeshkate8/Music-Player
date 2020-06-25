@@ -13,7 +13,6 @@ import code.name.player.musicplayer.App
 import code.name.player.musicplayer.Constants.USER_PROFILE
 import code.name.player.musicplayer.R
 import code.name.player.musicplayer.ui.activities.MainActivity
-import code.name.player.musicplayer.ui.activities.bugreport.BugReportActivity
 import code.name.player.musicplayer.ui.fragments.mainactivity.folders.FoldersFragment
 import code.name.player.musicplayer.util.Compressor
 import code.name.player.musicplayer.util.NavigationUtil
@@ -104,7 +103,6 @@ class OptionsSheetDialogFragment : RoundedBottomSheetDialogFragment(), View.OnCl
     }
 
     private fun prepareBugReport() {
-        startActivity(Intent(activity, BugReportActivity::class.java))
     }
 
     private fun shareApp() {

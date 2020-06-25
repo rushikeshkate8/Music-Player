@@ -116,7 +116,6 @@
             android:scaleType="fitCenter"
             tools:ignore="MissingPrefix"
             tools:src="@drawable/ic_pause_white_24dp" />
-
     </RelativeLayout>
 
     <include layout="@layout/volume_controls" />

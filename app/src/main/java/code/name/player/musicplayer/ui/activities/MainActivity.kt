@@ -4,12 +4,12 @@ import android.annotation.SuppressLint
 import android.content.*
 import android.content.pm.PackageManager
 import android.os.Bundle
-import android.preference.PreferenceManager
 import android.provider.MediaStore
 import android.util.Log
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
 import code.name.player.musicplayer.R
@@ -25,15 +25,16 @@ import code.name.player.musicplayer.ui.fragments.mainactivity.LibraryFragment
 import code.name.player.musicplayer.ui.fragments.mainactivity.home.BannerHomeFragment
 import code.name.player.musicplayer.util.NavigationUtil
 import code.name.player.musicplayer.util.PreferenceUtil
-import com.afollestad.materialdialogs.MaterialDialog
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.AdView
+import com.google.android.gms.ads.MobileAds
 import io.reactivex.disposables.CompositeDisposable
 import java.util.*
 
 
 class MainActivity : AbsSlidingMusicPanelActivity(), SharedPreferences.OnSharedPreferenceChangeListener {
-
     private lateinit var currentFragment: MainActivityFragmentCallbacks
-
+    lateinit var mAdView : AdView
     private var blockRequestPermissions: Boolean = false
     private val disposable = CompositeDisposable()
     private val broadcastReceiver = object : BroadcastReceiver() {
@@ -62,6 +63,10 @@ class MainActivity : AbsSlidingMusicPanelActivity(), SharedPreferences.OnSharedP
         setDrawUnderStatusBar()
         super.onCreate(savedInstanceState)
 
+        MobileAds.initialize(this) {}
+        mAdView = findViewById(R.id.adView)
+        val adRequest = AdRequest.Builder().build()
+        mAdView.loadAd(adRequest)
         getBottomNavigationView().setOnNavigationItemSelectedListener {
             PreferenceUtil.getInstance().lastPage = it.itemId
             selectedFragment(it.itemId)
@@ -88,7 +93,7 @@ class MainActivity : AbsSlidingMusicPanelActivity(), SharedPreferences.OnSharedP
             val pInfo = packageManager.getPackageInfo(packageName, 0)
             val currentVersion = pInfo.versionCode
             if (currentVersion != PreferenceUtil.getInstance().lastChangelogVersion) {
-                startActivityForResult(Intent(this, WhatsNewActivity::class.java), APP_INTRO_REQUEST)
+               Toast.makeText(this, "Thanks for using", Toast.LENGTH_SHORT)
             }
         } catch (e: PackageManager.NameNotFoundException) {
             e.printStackTrace()
@@ -258,21 +263,6 @@ class MainActivity : AbsSlidingMusicPanelActivity(), SharedPreferences.OnSharedP
                 key == PreferenceUtil.ALBUM_COVER_TRANSFORM ||
                 key == PreferenceUtil.TAB_TEXT_MODE)
             postRecreate()
-    }
-
-    private fun showPromotionalOffer() {
-        MaterialDialog.Builder(this)
-                .positiveText("Buy")
-                .onPositive { _, _ -> startActivity(Intent(this@MainActivity, PurchaseActivity::class.java)) }
-                .negativeText(android.R.string.cancel)
-                .customView(R.layout.dialog_promotional_offer, false)
-                .dismissListener {
-                    PreferenceManager.getDefaultSharedPreferences(this@MainActivity)
-                            .edit()
-                            .putBoolean("shown", true)
-                            .apply()
-                }
-                .show()
     }
 
     private fun selectedFragment(itemId: Int) {
