@@ -7,18 +7,14 @@ import android.media.MediaPlayer;
 import android.media.audiofx.AudioEffect;
 import android.net.Uri;
 import android.os.PowerManager;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import android.util.Log;
-import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Toast;
 
-import com.google.android.gms.ads.AdView;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import code.name.player.musicplayer.R;
 import code.name.player.musicplayer.service.playback.Playback;
-import code.name.player.musicplayer.ui.activities.MainActivity;
 import code.name.player.musicplayer.util.PreferenceUtil;
 
 /**

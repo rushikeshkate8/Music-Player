@@ -13,9 +13,6 @@ import code.name.player.musicplayer.Constants.SHUFFLE_MODE_CHANGED
 import code.name.player.musicplayer.R
 import code.name.player.musicplayer.helper.MusicPlayerRemote
 import code.name.player.musicplayer.interfaces.MusicServiceEventListener
-import com.google.android.gms.ads.AdRequest
-import com.google.android.gms.ads.AdView
-import com.google.android.gms.ads.MobileAds
 import java.lang.ref.WeakReference
 import java.util.*
 

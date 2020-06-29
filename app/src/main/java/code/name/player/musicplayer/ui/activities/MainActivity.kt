@@ -9,6 +9,7 @@ import android.util.Log
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
+import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
@@ -25,16 +26,15 @@ import code.name.player.musicplayer.ui.fragments.mainactivity.LibraryFragment
 import code.name.player.musicplayer.ui.fragments.mainactivity.home.BannerHomeFragment
 import code.name.player.musicplayer.util.NavigationUtil
 import code.name.player.musicplayer.util.PreferenceUtil
-import com.google.android.gms.ads.AdRequest
-import com.google.android.gms.ads.AdView
-import com.google.android.gms.ads.MobileAds
+import com.facebook.ads.*
 import io.reactivex.disposables.CompositeDisposable
 import java.util.*
 
 
 class MainActivity : AbsSlidingMusicPanelActivity(), SharedPreferences.OnSharedPreferenceChangeListener {
     private lateinit var currentFragment: MainActivityFragmentCallbacks
-    lateinit var mAdView : AdView
+    //lateinit var mAdView : AdView
+    private var adView: AdView? = null
     private var blockRequestPermissions: Boolean = false
     private val disposable = CompositeDisposable()
     private val broadcastReceiver = object : BroadcastReceiver() {
@@ -62,11 +62,47 @@ class MainActivity : AbsSlidingMusicPanelActivity(), SharedPreferences.OnSharedP
     override fun onCreate(savedInstanceState: Bundle?) {
         setDrawUnderStatusBar()
         super.onCreate(savedInstanceState)
+        AudienceNetworkAds.initialize(this)
+        adView = AdView(this, "IMG_16_9_APP_INSTALL#YOUR_PLACEMENT_ID", AdSize.BANNER_HEIGHT_50)
+        // Find the Ad Container
 
-        MobileAds.initialize(this) {}
+        val adContainer = findViewById<View>(R.id.banner_container) as LinearLayout
+
+        // Add the ad view to your activity layout
+
+        // Add the ad view to your activity layout
+        adContainer.addView(adView)
+        // Request an ad
+        adView!!.setAdListener(object : AdListener {
+            override fun onError(ad: Ad?, adError: AdError) {
+                // Ad error callback
+                Toast.makeText(this@MainActivity, "Error in Loading Ad :" + adError.getErrorMessage(),
+                        Toast.LENGTH_LONG).show()
+            }
+
+            override fun onAdLoaded(ad: Ad?) {
+                // Ad loaded callback
+                Toast.makeText(this@MainActivity, "onAdLoaded",
+                        Toast.LENGTH_LONG).show()
+            }
+
+            override fun onAdClicked(ad: Ad?) {
+                // Ad clicked callback
+                Toast.makeText(this@MainActivity, "onAdClicked",
+                        Toast.LENGTH_LONG).show()
+            }
+
+            override fun onLoggingImpression(ad: Ad?) {
+                // Ad impression logged callback
+                Toast.makeText(this@MainActivity, "onAdImpressionLogged",
+                        Toast.LENGTH_LONG).show()
+            }
+        })
+        adView!!.loadAd()
+        /*MobileAds.initialize(this) {}
         mAdView = findViewById(R.id.adView)
         val adRequest = AdRequest.Builder().build()
-        mAdView.loadAd(adRequest)
+        mAdView.loadAd(adRequest) */
         getBottomNavigationView().setOnNavigationItemSelectedListener {
             PreferenceUtil.getInstance().lastPage = it.itemId
             selectedFragment(it.itemId)
@@ -118,6 +154,9 @@ class MainActivity : AbsSlidingMusicPanelActivity(), SharedPreferences.OnSharedP
     }
 
     override fun onDestroy() {
+        if (adView != null) {
+            adView!!.destroy()
+        }
         super.onDestroy()
         disposable.clear()
         unregisterReceiver(broadcastReceiver)

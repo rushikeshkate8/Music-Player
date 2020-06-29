@@ -67,6 +67,8 @@ class App : MultiDexApplication() {
             get() = instance.applicationContext
 
         val isProVersion: Boolean
-            get() = BuildConfig.DEBUG || instance.billingProcessor.isPurchased(PRO_VERSION_PRODUCT_ID)
+            get() = true
+        // instance.billingProcessor.isPurchased(PRO_VERSION_PRODUCT_ID)
+        //BuildConfig.DEBUG ||
     }
 }

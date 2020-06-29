@@ -14,7 +14,7 @@ class PersonaizeSettingsFragment : AbsSettingsFragment(), SharedPreferences.OnSh
     override fun invalidateSettings() {
         val cornerWindow = findPreference("corner_window") as TwoStatePreference
         cornerWindow.setOnPreferenceChangeListener { _, newValue ->
-            if (newValue as Boolean && !App.isProVersion) {
+            if (newValue as Boolean && App.isProVersion) { /*App.isProVersion*/
                 showProToastAndNavigate(activity!!.getString(R.string.pref_title_round_corners))
                 return@setOnPreferenceChangeListener false
             }

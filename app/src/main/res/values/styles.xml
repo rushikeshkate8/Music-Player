@@ -138,6 +138,7 @@
         <item name="colorPrimaryDark">@color/md_white_1000</item>
         <item name="android:windowLightStatusBar">true</item>
         <item name="android:windowLightNavigationBar">true</item>
+        <item name="android:navigationBarColor">#FFFFFF</item>
         <item name="android:windowBackground">@color/md_white_1000</item>
     </style>
     <style name="SplashScreenTheme" parent="Theme.AppCompat.NoActionBar">

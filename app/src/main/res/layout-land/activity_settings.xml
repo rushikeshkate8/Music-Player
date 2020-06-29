@@ -61,6 +61,7 @@
             android:layout_weight="1" />
     </LinearLayout>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
+    <!--
     <com.google.android.gms.ads.AdView
         xmlns:ads="http://schemas.android.com/apk/res-auto"
         android:id="@+id/adViewSetting"
@@ -70,5 +71,5 @@
         android:layout_alignParentBottom="true"
         ads:adSize="BANNER"
         ads:adUnitId="ca-app-pub-3940256099942544/6300978111">
-    </com.google.android.gms.ads.AdView>
+    </com.google.android.gms.ads.AdView> -->
 </RelativeLayout>

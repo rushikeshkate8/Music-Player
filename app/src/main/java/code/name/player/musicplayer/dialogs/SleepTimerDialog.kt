@@ -51,8 +51,8 @@ class SleepTimerDialog : RoundedBottomSheetDialogFragment() {
 
     private fun setProgressBarColor(dark: Int) {
         val ld = seekBar.progressDrawable as LayerDrawable
-        val clipDrawable = ld.findDrawableByLayerId(android.R.id.progress) as ClipDrawable
-        clipDrawable.setColorFilter(dark, PorterDuff.Mode.SRC_IN)
+//        val clipDrawable = ld.findDrawableByLayerId(android.R.id.progress) as ClipDrawable
+ //       clipDrawable.setColorFilter(dark, PorterDuff.Mode.SRC_IN)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -68,7 +68,7 @@ class SleepTimerDialog : RoundedBottomSheetDialogFragment() {
         seekArcProgress = PreferenceUtil.getInstance().lastSleepTimerValue
         updateTimeDisplayTime()
         seekBar.progress = seekArcProgress
-        setProgressBarColor(ThemeStore.accentColor(context!!))
+//        setProgressBarColor(ThemeStore.accentColor(context!!))
         seekBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
             override fun onProgressChanged(seekBar: SeekBar, i: Int, b: Boolean) {
                 if (i < 1) {
