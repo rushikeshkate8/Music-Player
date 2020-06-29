@@ -3,8 +3,6 @@ package code.name.player.musicplayer.ui.activities
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.MenuItem
-import android.view.View
-import android.widget.LinearLayout
 import androidx.annotation.ColorInt
 import androidx.annotation.StringRes
 import androidx.fragment.app.Fragment
@@ -18,15 +16,10 @@ import code.name.player.musicplayer.ui.activities.base.AbsBaseActivity
 import code.name.player.musicplayer.ui.fragments.settings.MainSettingsFragment
 import code.name.player.musicplayer.util.PreferenceUtil
 import com.afollestad.materialdialogs.color.ColorChooserDialog
-import com.facebook.ads.AdSize
-import com.facebook.ads.AdView
-import com.facebook.ads.AudienceNetworkAds
 import kotlinx.android.synthetic.main.activity_settings.*
 
 
 class SettingsActivity : AbsBaseActivity(), ColorChooserDialog.ColorCallback, SharedPreferences.OnSharedPreferenceChangeListener {
-    //lateinit var mAdView : AdView
-    private var adView: AdView? = null
     private val fragmentManager = supportFragmentManager
 
     override fun onColorSelection(dialog: ColorChooserDialog, @ColorInt selectedColor: Int) {
@@ -53,36 +46,6 @@ class SettingsActivity : AbsBaseActivity(), ColorChooserDialog.ColorCallback, Sh
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_settings)
-        /*
-        MobileAds.initialize(this) {}
-        mAdView = findViewById(R.id.adViewSetting)
-        val adRequest = AdRequest.Builder().build()
-        mAdView.loadAd(adRequest) */
-        AudienceNetworkAds.initialize(this)
-        // Instantiate an AdView object.
-        // NOTE: The placement ID from the Facebook Monetization Manager identifies your App.
-        // To get test ads, add IMG_16_9_APP_INSTALL# to your placement id. Remove this when your app is ready to serve real ads.
-
-
-        // Instantiate an AdView object.
-        // NOTE: The placement ID from the Facebook Monetization Manager identifies your App.
-        // To get test ads, add IMG_16_9_APP_INSTALL# to your placement id. Remove this when your app is ready to serve real ads.
-        adView = AdView(this, "IMG_16_9_APP_INSTALL#YOUR_PLACEMENT_ID", AdSize.BANNER_HEIGHT_50)
-
-        // Find the Ad Container
-
-        // Find the Ad Container
-        val adContainer = findViewById<View>(R.id.adViewSetting) as LinearLayout
-
-        // Add the ad view to your activity layout
-
-        // Add the ad view to your activity layout
-        adContainer.addView(adView)
-
-        // Request an ad
-
-        // Request an ad
-        adView!!.loadAd()
         setStatusbarColorAuto()
         setNavigationbarColorAuto()
 
@@ -151,12 +114,7 @@ class SettingsActivity : AbsBaseActivity(), ColorChooserDialog.ColorCallback, Sh
         super.onResume()
         PreferenceUtil.getInstance().registerOnSharedPreferenceChangedListener(this)
     }
-    override fun onDestroy() {
-        if (adView != null) {
-            adView!!.destroy()
-        }
-        super.onDestroy()
-    }
+
     override fun onSharedPreferenceChanged(sharedPreferences: SharedPreferences, key: String) {
         if (key == PreferenceUtil.PROFILE_IMAGE_PATH) {
             recreate()

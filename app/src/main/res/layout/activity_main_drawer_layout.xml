@@ -5,7 +5,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 <FrameLayout
     android:id="@+id/drawerLayout"
-    android:layout_above="@id/banner_container"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -15,25 +14,4 @@
         android:layout_height="match_parent" />
 
 </FrameLayout>
-    <!--
-    <com.google.android.gms.ads.AdView
-        xmlns:ads="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/adView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_alignParentBottom="true"
-        ads:adSize="BANNER"
-        android:background="@android:color/transparent"
-        ads:adUnitId="ca-app-pub-3874446741712203/9756390425">
-    </com.google.android.gms.ads.AdView>
-    -->
-    <LinearLayout
-        android:id="@+id/banner_container"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
-        />
 </RelativeLayout>

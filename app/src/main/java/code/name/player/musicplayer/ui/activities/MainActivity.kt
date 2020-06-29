@@ -9,8 +9,6 @@ import android.util.Log
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
-import android.widget.LinearLayout
-import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
 import code.name.player.musicplayer.R
@@ -26,15 +24,12 @@ import code.name.player.musicplayer.ui.fragments.mainactivity.LibraryFragment
 import code.name.player.musicplayer.ui.fragments.mainactivity.home.BannerHomeFragment
 import code.name.player.musicplayer.util.NavigationUtil
 import code.name.player.musicplayer.util.PreferenceUtil
-import com.facebook.ads.*
 import io.reactivex.disposables.CompositeDisposable
 import java.util.*
 
 
 class MainActivity : AbsSlidingMusicPanelActivity(), SharedPreferences.OnSharedPreferenceChangeListener {
     private lateinit var currentFragment: MainActivityFragmentCallbacks
-    //lateinit var mAdView : AdView
-    private var adView: AdView? = null
     private var blockRequestPermissions: Boolean = false
     private val disposable = CompositeDisposable()
     private val broadcastReceiver = object : BroadcastReceiver() {
@@ -62,47 +57,7 @@ class MainActivity : AbsSlidingMusicPanelActivity(), SharedPreferences.OnSharedP
     override fun onCreate(savedInstanceState: Bundle?) {
         setDrawUnderStatusBar()
         super.onCreate(savedInstanceState)
-        AudienceNetworkAds.initialize(this)
-        adView = AdView(this, "IMG_16_9_APP_INSTALL#YOUR_PLACEMENT_ID", AdSize.BANNER_HEIGHT_50)
-        // Find the Ad Container
 
-        val adContainer = findViewById<View>(R.id.banner_container) as LinearLayout
-
-        // Add the ad view to your activity layout
-
-        // Add the ad view to your activity layout
-        adContainer.addView(adView)
-        // Request an ad
-        adView!!.setAdListener(object : AdListener {
-            override fun onError(ad: Ad?, adError: AdError) {
-                // Ad error callback
-                Toast.makeText(this@MainActivity, "Error in Loading Ad :" + adError.getErrorMessage(),
-                        Toast.LENGTH_LONG).show()
-            }
-
-            override fun onAdLoaded(ad: Ad?) {
-                // Ad loaded callback
-                Toast.makeText(this@MainActivity, "onAdLoaded",
-                        Toast.LENGTH_LONG).show()
-            }
-
-            override fun onAdClicked(ad: Ad?) {
-                // Ad clicked callback
-                Toast.makeText(this@MainActivity, "onAdClicked",
-                        Toast.LENGTH_LONG).show()
-            }
-
-            override fun onLoggingImpression(ad: Ad?) {
-                // Ad impression logged callback
-                Toast.makeText(this@MainActivity, "onAdImpressionLogged",
-                        Toast.LENGTH_LONG).show()
-            }
-        })
-        adView!!.loadAd()
-        /*MobileAds.initialize(this) {}
-        mAdView = findViewById(R.id.adView)
-        val adRequest = AdRequest.Builder().build()
-        mAdView.loadAd(adRequest) */
         getBottomNavigationView().setOnNavigationItemSelectedListener {
             PreferenceUtil.getInstance().lastPage = it.itemId
             selectedFragment(it.itemId)
@@ -112,9 +67,9 @@ class MainActivity : AbsSlidingMusicPanelActivity(), SharedPreferences.OnSharedP
         //setUpDrawerLayout()
 
         if (savedInstanceState == null) {
-            selectedFragment(PreferenceUtil.getInstance().lastPage);
+            selectedFragment(PreferenceUtil.getInstance().lastPage)
         } else {
-            restoreCurrentFragment();
+            restoreCurrentFragment()
         }
 
         checkShowChangelog()
@@ -129,7 +84,7 @@ class MainActivity : AbsSlidingMusicPanelActivity(), SharedPreferences.OnSharedP
             val pInfo = packageManager.getPackageInfo(packageName, 0)
             val currentVersion = pInfo.versionCode
             if (currentVersion != PreferenceUtil.getInstance().lastChangelogVersion) {
-               Toast.makeText(this, "Thanks for using", Toast.LENGTH_SHORT)
+              // This exicuted at starting of app install
             }
         } catch (e: PackageManager.NameNotFoundException) {
             e.printStackTrace()
@@ -154,9 +109,6 @@ class MainActivity : AbsSlidingMusicPanelActivity(), SharedPreferences.OnSharedP
     }
 
     override fun onDestroy() {
-        if (adView != null) {
-            adView!!.destroy()
-        }
         super.onDestroy()
         disposable.clear()
         unregisterReceiver(broadcastReceiver)
@@ -254,9 +206,7 @@ class MainActivity : AbsSlidingMusicPanelActivity(), SharedPreferences.OnSharedP
             }
             REQUEST_CODE_THEME, APP_USER_INFO_REQUEST -> postRecreate()
             PURCHASE_REQUEST -> {
-                if (resultCode == RESULT_OK) {
-                    //checkSetUpPro();
-                }
+
             }
         }
 
@@ -317,7 +267,7 @@ class MainActivity : AbsSlidingMusicPanelActivity(), SharedPreferences.OnSharedP
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if (item.itemId == android.R.id.home) {
-            NavigationUtil.goToSearch(this);
+            NavigationUtil.goToSearch(this)
             return true
         }
         return super.onOptionsItemSelected(item)
@@ -325,8 +275,6 @@ class MainActivity : AbsSlidingMusicPanelActivity(), SharedPreferences.OnSharedP
 
     companion object {
         const val APP_INTRO_REQUEST = 2323
-        const val LIBRARY = 1
-        const val FOLDERS = 3
         const val HOME = 0
         private const val TAG = "MainActivity"
         private const val APP_USER_INFO_REQUEST = 9003

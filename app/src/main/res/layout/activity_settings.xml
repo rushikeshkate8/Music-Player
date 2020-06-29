@@ -3,11 +3,9 @@
     android:layout_height="match_parent"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<androidx.coordinatorlayout.widget.CoordinatorLayout
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:layout_above="@id/adViewSetting">
+    android:layout_height="match_parent">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appBarLayout"
@@ -28,46 +26,21 @@
                 app:layout_collapseMode="pin"
                 app:navigationIcon="@drawable/ic_keyboard_backspace_black_24dp"
                 app:title="">
-
                 <TextView
                     android:id="@+id/settingsTitle"
                     style="@style/BigTitleTextAppearance"
                     android:text="@string/action_settings" />
-
             </androidx.appcompat.widget.Toolbar>
         </com.google.android.material.appbar.CollapsingToolbarLayout>
-
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:background="?dividerColor" />
     </com.google.android.material.appbar.AppBarLayout>
-
-
     <FrameLayout
         android:id="@+id/contentFrame"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior" />
-
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
-    <!--
-    <com.google.android.gms.ads.AdView
-        xmlns:ads="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/adViewSetting"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_alignParentBottom="true"
-        ads:adSize="BANNER"
-        ads:adUnitId="ca-app-pub-3874446741712203/3737776981">
-    </com.google.android.gms.ads.AdView> -->
-    <LinearLayout
-        android:id="@+id/adViewSetting"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
-        />
 </RelativeLayout>
