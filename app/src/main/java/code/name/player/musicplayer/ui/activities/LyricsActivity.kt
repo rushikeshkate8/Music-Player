@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.text.InputType
 import android.text.TextUtils
 import android.view.*
+import android.widget.LinearLayout
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
@@ -27,6 +28,9 @@ import code.name.player.musicplayer.util.MusicUtil
 import code.name.player.musicplayer.util.PreferenceUtil
 import code.name.player.musicplayer.util.RetroUtil
 import com.afollestad.materialdialogs.MaterialDialog
+import com.facebook.ads.AdSize
+import com.facebook.ads.AdView
+import com.facebook.ads.AudienceNetworkAds
 import kotlinx.android.synthetic.main.activity_lyrics.*
 import kotlinx.android.synthetic.main.fragment_lyrics.*
 import kotlinx.android.synthetic.main.fragment_synced.*
@@ -35,6 +39,7 @@ import java.io.File
 import java.util.*
 
 class LyricsActivity : AbsMusicServiceActivity(), View.OnClickListener, ViewPager.OnPageChangeListener {
+    private var adView: AdView? = null
     override fun onPageScrollStateChanged(state: Int) {
 
     }
@@ -69,11 +74,34 @@ class LyricsActivity : AbsMusicServiceActivity(), View.OnClickListener, ViewPage
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_lyrics)
-
+        AudienceNetworkAds.initialize(this)
         setStatusbarColorAuto()
         setTaskDescriptionColorAuto()
         setNavigationbarColorAuto()
+        // Instantiate an AdView object.
+        // NOTE: The placement ID from the Facebook Monetization Manager identifies your App.
+        // To get test ads, add IMG_16_9_APP_INSTALL# to your placement id. Remove this when your app is ready to serve real ads.
 
+
+        // Instantiate an AdView object.
+        // NOTE: The placement ID from the Facebook Monetization Manager identifies your App.
+        // To get test ads, add IMG_16_9_APP_INSTALL# to your placement id. Remove this when your app is ready to serve real ads.
+        adView = AdView(this, "266586284404690_267140967682555", AdSize.BANNER_HEIGHT_50)
+
+        // Find the Ad Container
+
+        // Find the Ad Container
+        val adContainer: LinearLayout = findViewById<View>(R.id.lyrics) as LinearLayout
+
+        // Add the ad view to your activity layout
+
+        // Add the ad view to your activity layout
+        adContainer.addView(adView)
+
+        // Request an ad
+
+        // Request an ad
+        adView!!.loadAd()
         appBarLayout.setBackgroundColor(ThemeStore.primaryColor(this))
         toolbar.apply {
             setBackgroundColor(ThemeStore.primaryColor(this@LyricsActivity))

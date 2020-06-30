@@ -5,15 +5,16 @@ import android.transition.TransitionManager
 import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
-import android.widget.AdapterView
-import android.widget.ArrayAdapter
-import android.widget.SeekBar
-import android.widget.TextView
+import android.widget.*
 import code.name.player.appthemehelper.ThemeStore
 import code.name.player.musicplayer.R
 import code.name.player.musicplayer.helper.EqualizerHelper
 import code.name.player.musicplayer.ui.activities.base.AbsMusicServiceActivity
+import com.facebook.ads.AdSize
+import com.facebook.ads.AdView
+import com.facebook.ads.AudienceNetworkAds
 import kotlinx.android.synthetic.main.activity_equalizer.*
+
 
 /**
  * @author Hemanth S (h4h13).
@@ -21,7 +22,7 @@ import kotlinx.android.synthetic.main.activity_equalizer.*
 
 class EqualizerActivity : AbsMusicServiceActivity(), AdapterView.OnItemSelectedListener {
 
-
+    private var adView: AdView? = null
     /*private val mListener = { buttonView, isChecked ->
         when (buttonView.getId()) {
             R.id.equalizerSwitch -> {
@@ -61,8 +62,31 @@ class EqualizerActivity : AbsMusicServiceActivity(), AdapterView.OnItemSelectedL
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_equalizer)
+        AudienceNetworkAds.initialize(this)
+        // Instantiate an AdView object.
+        // NOTE: The placement ID from the Facebook Monetization Manager identifies your App.
+        // To get test ads, add IMG_16_9_APP_INSTALL# to your placement id. Remove this when your app is ready to serve real ads.
 
 
+        // Instantiate an AdView object.
+        // NOTE: The placement ID from the Facebook Monetization Manager identifies your App.
+        // To get test ads, add IMG_16_9_APP_INSTALL# to your placement id. Remove this when your app is ready to serve real ads.
+        adView = AdView(this, "266586284404690_267130754350243", AdSize.BANNER_HEIGHT_50)
+
+        // Find the Ad Container
+
+        // Find the Ad Container
+        val adContainer = findViewById<View>(R.id.equilizer) as LinearLayout
+
+        // Add the ad view to your activity layout
+
+        // Add the ad view to your activity layout
+        adContainer.addView(adView)
+
+        // Request an ad
+
+        // Request an ad
+        adView!!.loadAd()
         setStatusbarColorAuto()
         setNavigationbarColorAuto()
         setTaskDescriptionColorAuto()
@@ -185,5 +209,9 @@ class EqualizerActivity : AbsMusicServiceActivity(), AdapterView.OnItemSelectedL
 
     override fun onNothingSelected(parent: AdapterView<*>) {
 
+    }
+    override fun onDestroy() {
+        if (adView != null) adView!!.destroy()
+        super.onDestroy()
     }
 }

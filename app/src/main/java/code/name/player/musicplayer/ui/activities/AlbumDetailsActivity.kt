@@ -7,6 +7,7 @@ import android.transition.Slide
 import android.view.*
 import android.view.animation.AnimationUtils
 import android.widget.ImageView
+import android.widget.LinearLayout
 import androidx.core.app.ActivityCompat
 import androidx.core.util.Pair
 import androidx.core.widget.NestedScrollView
@@ -39,6 +40,9 @@ import code.name.player.musicplayer.util.MusicUtil
 import code.name.player.musicplayer.util.NavigationUtil
 import code.name.player.musicplayer.util.PreferenceUtil
 import code.name.player.musicplayer.util.RetroUtil
+import com.facebook.ads.AdSize
+import com.facebook.ads.AdView
+import com.facebook.ads.AudienceNetworkAds
 import com.google.android.material.appbar.AppBarLayout
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
@@ -48,7 +52,7 @@ import kotlinx.android.synthetic.main.activity_album_content.*
 import java.util.*
 
 class AlbumDetailsActivity : AbsSlidingMusicPanelActivity(), AlbumDetailsContract.AlbumDetailsView {
-
+    private var adView: AdView? = null
     private lateinit var albumDetailsPresenter: AlbumDetailsPresenter
     private lateinit var simpleSongAdapter: SimpleSongAdapter
     private var disposable = CompositeDisposable()
@@ -74,10 +78,34 @@ class AlbumDetailsActivity : AbsSlidingMusicPanelActivity(), AlbumDetailsContrac
         setupWindowTransition()
         super.onCreate(savedInstanceState)
         toggleBottomNavigationView(true)
+        // Initialize the Audience Network SDK
+        AudienceNetworkAds.initialize(this)
+        // Instantiate an AdView object.
+        // NOTE: The placement ID from the Facebook Monetization Manager identifies your App.
+        // To get test ads, add IMG_16_9_APP_INSTALL# to your placement id. Remove this when your app is ready to serve real ads.
 
+
+        // Instantiate an AdView object.
+        // NOTE: The placement ID from the Facebook Monetization Manager identifies your App.
+        // To get test ads, add IMG_16_9_APP_INSTALL# to your placement id. Remove this when your app is ready to serve real ads.
+        adView = AdView(this, "266586284404690_267152264348092", AdSize.BANNER_HEIGHT_50)
+
+        // Find the Ad Container
+
+        // Find the Ad Container
+        val adContainer: LinearLayout = findViewById<View>(R.id.album) as LinearLayout
+
+        // Add the ad view to your activity layout
+
+        // Add the ad view to your activity layout
+        adContainer.addView(adView)
+
+        // Request an ad
+
+        // Request an ad
+        adView!!.loadAd()
         setLightNavigationBar(true)
         setNavigationbarColorAuto()
-
 
         ActivityCompat.postponeEnterTransition(this)
 
@@ -165,6 +193,7 @@ class AlbumDetailsActivity : AbsSlidingMusicPanelActivity(), AlbumDetailsContrac
     }
 
     override fun onDestroy() {
+        adView?.destroy()
         super.onDestroy()
         disposable.dispose()
     }

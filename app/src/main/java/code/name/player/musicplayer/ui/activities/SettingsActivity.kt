@@ -3,6 +3,9 @@ package code.name.player.musicplayer.ui.activities
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.MenuItem
+import android.view.View
+import android.widget.LinearLayout
+import android.widget.Toast
 import androidx.annotation.ColorInt
 import androidx.annotation.StringRes
 import androidx.fragment.app.Fragment
@@ -16,12 +19,13 @@ import code.name.player.musicplayer.ui.activities.base.AbsBaseActivity
 import code.name.player.musicplayer.ui.fragments.settings.MainSettingsFragment
 import code.name.player.musicplayer.util.PreferenceUtil
 import com.afollestad.materialdialogs.color.ColorChooserDialog
+import com.facebook.ads.*
 import kotlinx.android.synthetic.main.activity_settings.*
 
 
 class SettingsActivity : AbsBaseActivity(), ColorChooserDialog.ColorCallback, SharedPreferences.OnSharedPreferenceChangeListener {
     private val fragmentManager = supportFragmentManager
-
+    private var adView: AdView? = null
     override fun onColorSelection(dialog: ColorChooserDialog, @ColorInt selectedColor: Int) {
         when (dialog.title) {
             R.string.primary_color -> {
@@ -48,7 +52,18 @@ class SettingsActivity : AbsBaseActivity(), ColorChooserDialog.ColorCallback, Sh
         setContentView(R.layout.activity_settings)
         setStatusbarColorAuto()
         setNavigationbarColorAuto()
+        AudienceNetworkAds.initialize(this)
+        adView = AdView(this, "266586284404690_267119051018080", AdSize.BANNER_HEIGHT_50)
 
+        // Find the Ad Container
+        val adContainer = findViewById<View>(R.id.settingActivityBanner) as LinearLayout
+
+        // Add the ad view to your activity layout
+
+        // Add the ad view to your activity layout
+        adContainer.addView(adView)
+        // Request an ad
+        adView!!.loadAd()
         setLightNavigationBar(true)
 
         setupToolbar()
@@ -114,7 +129,12 @@ class SettingsActivity : AbsBaseActivity(), ColorChooserDialog.ColorCallback, Sh
         super.onResume()
         PreferenceUtil.getInstance().registerOnSharedPreferenceChangedListener(this)
     }
-
+    override fun onDestroy() {
+        if (adView != null) {
+            adView!!.destroy()
+        }
+        super.onDestroy()
+    }
     override fun onSharedPreferenceChanged(sharedPreferences: SharedPreferences, key: String) {
         if (key == PreferenceUtil.PROFILE_IMAGE_PATH) {
             recreate()

@@ -10,6 +10,7 @@ import android.text.Spanned
 import android.transition.Slide
 import android.view.*
 import android.view.animation.AnimationUtils
+import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.widget.NestedScrollView
@@ -37,6 +38,9 @@ import code.name.player.musicplayer.ui.adapter.album.AlbumAdapter
 import code.name.player.musicplayer.ui.adapter.album.HorizontalAlbumAdapter
 import code.name.player.musicplayer.ui.adapter.song.SimpleSongAdapter
 import code.name.player.musicplayer.util.*
+import com.facebook.ads.AdSize
+import com.facebook.ads.AdView
+import com.facebook.ads.AudienceNetworkAds
 import com.google.android.material.appbar.AppBarLayout
 import kotlinx.android.synthetic.main.activity_artist_content.*
 import kotlinx.android.synthetic.main.activity_artist_details.*
@@ -55,7 +59,7 @@ class ArtistDetailActivity : AbsSlidingMusicPanelActivity(), ArtistDetailContrac
     private lateinit var songAdapter: SimpleSongAdapter
     private lateinit var albumAdapter: AlbumAdapter
     private var forceDownload: Boolean = false
-
+    private var adView: AdView? = null
     private fun setupWindowTransitions() {
         val slide = Slide(Gravity.BOTTOM)
         slide.interpolator = AnimationUtils.loadInterpolator(this, android.R.interpolator.linear_out_slow_in)
@@ -71,8 +75,29 @@ class ArtistDetailActivity : AbsSlidingMusicPanelActivity(), ArtistDetailContrac
         setDrawUnderStatusBar()
         setupWindowTransitions()
         super.onCreate(savedInstanceState)
+        AudienceNetworkAds.initialize(this)
+        // Instantiate an AdView object.
+        // NOTE: The placement ID from the Facebook Monetization Manager identifies your App.
+        // To get test ads, add IMG_16_9_APP_INSTALL# to your placement id. Remove this when your app is ready to serve real ads.
 
 
+        // Instantiate an AdView object.
+        // NOTE: The placement ID from the Facebook Monetization Manager identifies your App.
+        // To get test ads, add IMG_16_9_APP_INSTALL# to your placement id. Remove this when your app is ready to serve real ads.
+        adView = AdView(this, "266586284404690_267174331012552", AdSize.BANNER_HEIGHT_50)
+
+        // Find the Ad Container
+        val adContainer: LinearLayout = findViewById<View>(R.id.artist_banner_ad) as LinearLayout
+
+        // Add the ad view to your activity layout
+
+        // Add the ad view to your activity layout
+        adContainer.addView(adView)
+
+        // Request an ad
+
+        // Request an ad
+        adView!!.loadAd()
         toggleBottomNavigationView(true)
         setNavigationbarColorAuto()
         setLightNavigationBar(true)
