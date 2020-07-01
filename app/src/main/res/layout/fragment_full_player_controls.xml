@@ -6,14 +6,30 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical">
+    <SeekBar
+        android:id="@+id/progressSlider"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:maxHeight="3dp"
+        android:paddingStart="22dp"
+        android:paddingEnd="22dp"
+        android:progressDrawable="@drawable/color_progress_seek"
+        android:splitTrack="false"
+        android:thumb="@drawable/switch_thumb_material"
+        tools:progress="20" />
 
+    <include layout="@layout/player_time" />
     <TextView
         android:id="@+id/title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:paddingStart="16dp"
-        android:paddingEnd="16dp"
+        android:paddingStart="40dp"
+        android:maxLines="1"
+        android:paddingTop="8dp"
+        android:ellipsize="end"
+        android:alpha="1"
+        android:paddingEnd="40dp"
         android:paddingBottom="8dp"
         android:textAppearance="@style/TextAppearance.Widget.AppCompat.Toolbar.Title"
         android:textColor="@color/md_white_1000" />
@@ -23,32 +39,17 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:alpha="0.75"
+        android:ellipsize="end"
         android:gravity="center"
-        android:paddingStart="16dp"
-        android:paddingEnd="16dp"
-        android:paddingBottom="16dp"
+        android:paddingStart="40dp"
+        android:paddingEnd="40dp"
         android:textAppearance="@style/TextAppearance.Widget.AppCompat.Toolbar.Subtitle"
         android:textColor="@color/md_white_1000" />
-
-    <SeekBar
-        android:id="@+id/progressSlider"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:maxHeight="3dp"
-        android:paddingStart="22dp"
-        android:paddingEnd="22dp"
-        android:paddingBottom="4dp"
-        android:progressDrawable="@drawable/color_progress_seek"
-        android:splitTrack="false"
-        android:thumb="@drawable/switch_thumb_material"
-        tools:progress="20" />
-
-    <include layout="@layout/player_time" />
-
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layoutDirection="ltr"
+        android:padding="16dp"
         tools:ignore="ContentDescription,UnusedAttribute">
 
         <ImageButton

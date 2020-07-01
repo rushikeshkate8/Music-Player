@@ -60,31 +60,11 @@ class SettingsActivity : AbsBaseActivity(), ColorChooserDialog.ColorCallback, Sh
         setNavigationbarColorAuto()
         AudienceNetworkAds.initialize(this)
         adView = AdView(this, "266586284404690_267119051018080", AdSize.BANNER_HEIGHT_50)
-
-        // Find the Ad Container
         val adContainer = findViewById<View>(R.id.settingActivityBanner) as LinearLayout
-
-        // Add the ad view to your activity layout
-
-        // Add the ad view to your activity layout
         adContainer.addView(adView)
-        // Request an ad
         adView!!.loadAd()
-        // Instantiate an InterstitialAd object.
-        // NOTE: the placement ID will eventually identify this as your App, you can ignore it for
-        // now, while you are testing and replace it later when you have signed up.
-        // While you are using this temporary code you will only get test ads and if you release
-        // your code like this to the Google Play your users will not receive ads (you will get a no fill error).
-
-        // Instantiate an InterstitialAd object.
-        // NOTE: the placement ID will eventually identify this as your App, you can ignore it for
-        // now, while you are testing and replace it later when you have signed up.
-        // While you are using this temporary code you will only get test ads and if you release
-        // your code like this to the Google Play your users will not receive ads (you will get a no fill error).
         interstitialAd = InterstitialAd(this, "266586284404690_267321077664544")
         Handler().postDelayed({
-            Toast.makeText(this@SettingsActivity, "Ad Loading...",
-                    Toast.LENGTH_LONG).show()
             interstitialAd!!.loadAd()
         }, 10000)
         setLightNavigationBar(true)

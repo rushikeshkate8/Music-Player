@@ -6,7 +6,7 @@
     android:layout_height="wrap_content"
     android:paddingStart="24dp"
     android:paddingEnd="24dp"
-    android:paddingBottom="32dp">
+   >
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -47,24 +47,28 @@
                 tools:text="@string/action_share" />
 
         </LinearLayout>
-
-        <include layout="@layout/volume_controls" />
-
-        <include layout="@layout/media_button" />
-
-        <include layout="@layout/player_time" />
-
+        <include layout="@layout/player_time"/>
         <androidx.appcompat.widget.AppCompatSeekBar
             android:id="@+id/progressSlider"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingStart="20dp"
             android:paddingEnd="20dp"
+            android:paddingVertical="8dp"
             android:progressTint="@color/md_white_1000"
             android:splitTrack="false"
             android:thumb="@null"
             android:thumbTint="@color/md_white_1000"
             tools:progress="20" />
+        <include layout="@layout/media_button"
+            android:layout_marginBottom="16dp"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent" />
+
+        <include layout="@layout/volume_controls"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_marginVertical="16dp"/>
 
     </LinearLayout>
 </FrameLayout>

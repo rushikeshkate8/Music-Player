@@ -61,6 +61,13 @@
                         app:titleTextAppearance="@style/TextAppearance.AppCompat.Subhead" />
                 </FrameLayout>
 
+                <fragment
+                    android:id="@+id/playbackControlsFragment"
+                    android:name="code.name.player.musicplayer.ui.fragments.player.cardblur.CardBlurPlaybackControlsFragment"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    tools:layout="@layout/fragment_card_blur_player_playback_controls" />
+
                 <FrameLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -81,12 +88,6 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom">
 
-                <fragment
-                    android:id="@+id/playbackControlsFragment"
-                    android:name="code.name.player.musicplayer.ui.fragments.player.cardblur.CardBlurPlaybackControlsFragment"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    tools:layout="@layout/fragment_card_blur_player_playback_controls" />
             </FrameLayout>
         </FrameLayout>
     </code.name.player.musicplayer.views.FitSystemWindowsLayout>

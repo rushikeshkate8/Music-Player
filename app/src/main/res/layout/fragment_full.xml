@@ -1,23 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
+<RelativeLayout android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:clickable="true"
-    android:focusable="true">
-
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#DE000000" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingTop="28dp"
+        android:orientation="vertical">
     <fragment
         android:id="@+id/playerAlbumCoverFragment"
         android:name="code.name.player.musicplayer.ui.fragments.player.PlayerAlbumCoverFragment"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_weight="1"
         tools:layout="@layout/fragment_album_full_cover" />
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="#50000000" />
-
+<FrameLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_weight="0"
+    android:clickable="true"
+    android:focusable="true">
     <code.name.player.musicplayer.views.FitSystemWindowsLayout
         android:id="@+id/safeArea"
         android:layout_width="match_parent"
@@ -51,3 +59,5 @@
         </LinearLayout>
     </code.name.player.musicplayer.views.FitSystemWindowsLayout>
 </FrameLayout>
+    </LinearLayout>
+</RelativeLayout>
