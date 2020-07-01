@@ -5,6 +5,8 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import android.widget.LinearLayout
+import android.widget.Toast
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -24,15 +26,12 @@ import code.name.player.musicplayer.ui.adapter.song.SongAdapter
 import code.name.player.musicplayer.util.RetroColorUtil
 import code.name.player.musicplayer.util.ViewUtil
 import com.afollestad.materialcab.MaterialCab
+import com.facebook.ads.*
 import kotlinx.android.synthetic.main.activity_playlist_detail.*
 import java.util.*
 
-/**
- * @author Hemanth S (h4h13).
- */
 
 class GenreDetailsActivity : AbsSlidingMusicPanelActivity(), GenreDetailsContract.GenreDetailsView, CabHolder {
-
     private var genre: Genre? = null
     private var presenter: GenreDetailsPresenter? = null
     private var songAdapter: SongAdapter? = null
@@ -45,9 +44,8 @@ class GenreDetailsActivity : AbsSlidingMusicPanelActivity(), GenreDetailsContrac
     override fun onCreate(savedInstanceState: Bundle?) {
         setDrawUnderStatusBar()
         super.onCreate(savedInstanceState)
-
-
         setStatusbarColor(Color.TRANSPARENT)
+
         setNavigationbarColorAuto()
         setTaskDescriptionColorAuto()
         setLightNavigationBar(true)

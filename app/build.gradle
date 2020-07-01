@@ -15,8 +15,8 @@ android {
         vectorDrawables.useSupportLibrary = true
 
         applicationId "code.name.player.musicplayer"
-        versionCode 4
-        versionName '4.0'
+        versionCode 5
+        versionName '4.1'
         multiDexEnabled true
 
         //  buildConfigField("String", "GOOGLE_PLAY_LICENSING_KEY", "\"${getProperty(getProperties('../public.properties'), 'GOOGLE_PLAY_LICENSE_KEY')}\"")

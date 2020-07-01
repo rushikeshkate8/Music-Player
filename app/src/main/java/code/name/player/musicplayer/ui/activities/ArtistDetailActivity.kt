@@ -222,7 +222,10 @@ class ArtistDetailActivity : AbsSlidingMusicPanelActivity(), ArtistDetailContrac
     override fun showEmptyView() {
 
     }
-
+    override fun onDestroy() {
+        adView?.destroy()
+        super.onDestroy()
+    }
     override fun completed() {
         ActivityCompat.startPostponedEnterTransition(this)
     }

@@ -1,109 +1,122 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:ignore="UnusedAttribute">
+    android:layout_height="match_parent">
 
-    <FrameLayout
+    <LinearLayout xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:ignore="UnusedAttribute"
+        android:layout_above="@id/playlist_banner_ad">
 
-        <include layout="@layout/status_bar" />
-    </FrameLayout>
-
-    <androidx.coordinatorlayout.widget.CoordinatorLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <com.google.android.material.appbar.AppBarLayout
-            android:id="@+id/appBarLayout"
+        <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:elevation="@dimen/card_elevation"
-            app:elevation="@dimen/card_elevation">
+            android:layout_height="wrap_content">
 
-            <com.google.android.material.appbar.CollapsingToolbarLayout
-                android:id="@+id/collapsingToolbarLayout"
+            <include layout="@layout/status_bar" />
+        </FrameLayout>
+
+        <androidx.coordinatorlayout.widget.CoordinatorLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <com.google.android.material.appbar.AppBarLayout
+                android:id="@+id/appBarLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:layout_scrollFlags="scroll|enterAlways"
-                app:titleEnabled="false">
+                android:elevation="@dimen/card_elevation"
+                app:elevation="@dimen/card_elevation">
 
-                <FrameLayout
+                <com.google.android.material.appbar.CollapsingToolbarLayout
+                    android:id="@+id/collapsingToolbarLayout"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    app:layout_scrollFlags="scroll|enterAlways"
+                    app:titleEnabled="false">
 
-                    <ViewStub
-                        android:id="@+id/cab_stub"
+                    <FrameLayout
                         android:layout_width="match_parent"
-                        android:layout_height="48dp" />
+                        android:layout_height="wrap_content">
 
-                    <androidx.appcompat.widget.Toolbar
-                        android:id="@+id/toolbar"
-                        style="@style/Toolbar"
-                        app:layout_collapseMode="pin"
-                        app:title=""
-                        tools:ignore="UnusedAttribute">
+                        <ViewStub
+                            android:id="@+id/cab_stub"
+                            android:layout_width="match_parent"
+                            android:layout_height="48dp" />
 
-                        <TextView
-                            android:id="@+id/bannerTitle"
-                            style="@style/BigTitleTextAppearance" />
+                        <androidx.appcompat.widget.Toolbar
+                            android:id="@+id/toolbar"
+                            style="@style/Toolbar"
+                            app:layout_collapseMode="pin"
+                            app:title=""
+                            tools:ignore="UnusedAttribute">
 
-                    </androidx.appcompat.widget.Toolbar>
-                </FrameLayout>
-            </com.google.android.material.appbar.CollapsingToolbarLayout>
+                            <TextView
+                                android:id="@+id/bannerTitle"
+                                style="@style/BigTitleTextAppearance" />
 
-            <View
+                        </androidx.appcompat.widget.Toolbar>
+                    </FrameLayout>
+                </com.google.android.material.appbar.CollapsingToolbarLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="?dividerColor" />
+            </com.google.android.material.appbar.AppBarLayout>
+
+
+            <com.simplecityapps.recyclerview_fastscroll.views.FastScrollRecyclerView
+                android:id="@+id/recyclerView"
                 android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="?dividerColor" />
-        </com.google.android.material.appbar.AppBarLayout>
+                android:layout_height="wrap_content"
+                android:clipToPadding="false"
+                android:scrollbars="none"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
 
-        <com.simplecityapps.recyclerview_fastscroll.views.FastScrollRecyclerView
-            android:id="@+id/recyclerView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:clipToPadding="false"
-            android:scrollbars="none"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior" />
-
-
-        <LinearLayout
-            android:id="@android:id/empty"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:gravity="center"
-            android:orientation="vertical">
-
-            <code.name.player.musicplayer.views.IconImageView
-                android:layout_width="96dp"
-                android:layout_height="96dp"
-                app:srcCompat="@drawable/ic_disc_full_black_24dp" />
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/emptyText"
+            <LinearLayout
+                android:id="@android:id/empty"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="@string/playlist_empty_text"
-                android:textColor="?android:textColorSecondary"
-                android:visibility="gone"
-                tools:visibility="visible" />
-        </LinearLayout>
+                android:gravity="center"
+                android:orientation="vertical">
 
-        <code.name.player.musicplayer.views.CollapsingFAB
-            android:id="@+id/actionShuffle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom|end"
-            app:setIcon="@drawable/ic_shuffle_white_24dp"
-            app:setText="@string/action_shuffle_all"
-            app:showTitle="true" />
+                <code.name.player.musicplayer.views.IconImageView
+                    android:layout_width="96dp"
+                    android:layout_height="96dp"
+                    app:srcCompat="@drawable/ic_disc_full_black_24dp" />
 
-    </androidx.coordinatorlayout.widget.CoordinatorLayout>
-</LinearLayout>
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/emptyText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="@string/playlist_empty_text"
+                    android:textColor="?android:textColorSecondary"
+                    android:visibility="gone"
+                    tools:visibility="visible" />
+            </LinearLayout>
+
+            <code.name.player.musicplayer.views.CollapsingFAB
+                android:id="@+id/actionShuffle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|end"
+                app:setIcon="@drawable/ic_shuffle_white_24dp"
+                app:setText="@string/action_shuffle_all"
+                app:showTitle="true" />
+
+        </androidx.coordinatorlayout.widget.CoordinatorLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/playlist_banner_ad"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent" />
+</RelativeLayout>

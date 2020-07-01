@@ -5,6 +5,8 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import android.widget.LinearLayout
+import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import code.name.player.appthemehelper.ThemeStore
@@ -28,16 +30,17 @@ import code.name.player.musicplayer.util.PlaylistsUtil
 import code.name.player.musicplayer.util.RetroColorUtil
 import code.name.player.musicplayer.util.ViewUtil
 import com.afollestad.materialcab.MaterialCab
+import com.facebook.ads.*
 import com.h6ah4i.android.widget.advrecyclerview.animator.RefactoredDefaultItemAnimator
 import com.h6ah4i.android.widget.advrecyclerview.draggable.RecyclerViewDragDropManager
 import com.h6ah4i.android.widget.advrecyclerview.utils.WrapperAdapterUtils
-
 import kotlinx.android.synthetic.main.activity_playlist_detail.*
 import java.util.*
 
-class PlaylistDetailActivity : AbsSlidingMusicPanelActivity(), CabHolder, PlaylistSongsContract.PlaylistSongsView {
 
+class PlaylistDetailActivity : AbsSlidingMusicPanelActivity(), CabHolder, PlaylistSongsContract.PlaylistSongsView {
     private var playlist: Playlist? = null
+    private var adView: AdView? = null
     private var cab: MaterialCab? = null
     private lateinit var adapter: SongAdapter
     private var wrappedAdapter: RecyclerView.Adapter<*>? = null
@@ -47,14 +50,29 @@ class PlaylistDetailActivity : AbsSlidingMusicPanelActivity(), CabHolder, Playli
     override fun onCreate(savedInstanceState: Bundle?) {
         setDrawUnderStatusBar()
         super.onCreate(savedInstanceState)
-
         setStatusbarColor(Color.TRANSPARENT)
         setNavigationbarColorAuto()
         setTaskDescriptionColorAuto()
         setLightNavigationBar(true)
         setLightStatusbar(ColorUtil.isColorLight(ThemeStore.primaryColor(this)))
         toggleBottomNavigationView(true)
+        AudienceNetworkAds.initialize(this)
+        // Instantiate an AdView object.
+        // NOTE: The placement ID from the Facebook Monetization Manager identifies your App.
+        // To get test ads, add IMG_16_9_APP_INSTALL# to your placement id. Remove this when your app is ready to serve real ads.
 
+
+        // Instantiate an AdView object.
+        // NOTE: The placement ID from the Facebook Monetization Manager identifies your App.
+        // To get test ads, add IMG_16_9_APP_INSTALL# to your placement id. Remove this when your app is ready to serve real ads.
+        adView = AdView(this, "266586284404690_267246107672041", AdSize.BANNER_HEIGHT_50)
+        // Find the Ad Container
+        val adContainer = findViewById<View>(R.id.playlist_banner_ad) as LinearLayout
+
+        // Add the ad view to your activity layout
+        adContainer.addView(adView)
+        // Request an ad
+        adView!!.loadAd()
         playlist = intent.extras!!.getParcelable(EXTRA_PLAYLIST)
         songsPresenter = PlaylistSongsPresenter(this, playlist!!)
 
@@ -212,6 +230,7 @@ class PlaylistDetailActivity : AbsSlidingMusicPanelActivity(), CabHolder, Playli
     }
 
     override fun onDestroy() {
+        adView?.destroy()
         if (recyclerViewDragDropManager != null) {
             recyclerViewDragDropManager!!.release()
             recyclerViewDragDropManager = null
