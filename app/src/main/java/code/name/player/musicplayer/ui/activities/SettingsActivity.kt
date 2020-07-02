@@ -2,11 +2,9 @@ package code.name.player.musicplayer.ui.activities
 
 import android.content.SharedPreferences
 import android.os.Bundle
-import android.os.Handler
 import android.view.MenuItem
 import android.view.View
 import android.widget.LinearLayout
-import android.widget.Toast
 import androidx.annotation.ColorInt
 import androidx.annotation.StringRes
 import androidx.fragment.app.Fragment
@@ -23,14 +21,11 @@ import com.afollestad.materialdialogs.color.ColorChooserDialog
 import com.facebook.ads.AdSize
 import com.facebook.ads.AdView
 import com.facebook.ads.AudienceNetworkAds
-import com.facebook.ads.InterstitialAd
 import kotlinx.android.synthetic.main.activity_settings.*
 
 
 class SettingsActivity : AbsBaseActivity(), ColorChooserDialog.ColorCallback, SharedPreferences.OnSharedPreferenceChangeListener {
     private val fragmentManager = supportFragmentManager
-    private val TAG: String = code.name.player.musicplayer.ui.activities.SettingsActivity::class.java.getSimpleName()
-    private var interstitialAd: InterstitialAd? = null
     private var adView: AdView? = null
     override fun onColorSelection(dialog: ColorChooserDialog, @ColorInt selectedColor: Int) {
         when (dialog.title) {
@@ -63,10 +58,6 @@ class SettingsActivity : AbsBaseActivity(), ColorChooserDialog.ColorCallback, Sh
         val adContainer = findViewById<View>(R.id.settingActivityBanner) as LinearLayout
         adContainer.addView(adView)
         adView!!.loadAd()
-        interstitialAd = InterstitialAd(this, "266586284404690_267321077664544")
-        Handler().postDelayed({
-            interstitialAd!!.loadAd()
-        }, 10000)
         setLightNavigationBar(true)
 
         setupToolbar()
@@ -132,17 +123,7 @@ class SettingsActivity : AbsBaseActivity(), ColorChooserDialog.ColorCallback, Sh
         super.onResume()
         PreferenceUtil.getInstance().registerOnSharedPreferenceChangedListener(this)
     }
-    override fun onDestroy() {
-        if(interstitialAd?.isAdLoaded!!)
-        {
-            interstitialAd?.show()
-        }
-        if (adView != null) {
-            adView!!.destroy()
-        }
-        interstitialAd?.destroy()
-        super.onDestroy()
-    }
+
     override fun onSharedPreferenceChanged(sharedPreferences: SharedPreferences, key: String) {
         if (key == PreferenceUtil.PROFILE_IMAGE_PATH) {
             recreate()
