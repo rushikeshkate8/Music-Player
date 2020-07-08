@@ -59,7 +59,7 @@
     <string name="app_widget_big_name">Retro music - Big</string>
     <string name="app_widget_card_name">Retro music - Card</string>
     <string name="app_widget_classic_name">Retro music - Classic</string>
-    <string name="app_widget_small_name">Retro music - Small</string>
+    <string name="app_widget_small_name">Music Player - Small</string>
     <string name="artist">الفنان</string>
     <string name="artists">الفنانين</string>
     <string name="audio_focus_denied">تم رفض التركيز الصوتي.</string>

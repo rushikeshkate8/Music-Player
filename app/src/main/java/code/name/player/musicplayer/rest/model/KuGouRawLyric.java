@@ -2,9 +2,7 @@ package code.name.player.musicplayer.rest.model;
 
 import com.google.gson.annotations.SerializedName;
 
-/**
- * Created by hefuyi on 2017/1/20.
- */
+
 
 public class KuGouRawLyric {
 

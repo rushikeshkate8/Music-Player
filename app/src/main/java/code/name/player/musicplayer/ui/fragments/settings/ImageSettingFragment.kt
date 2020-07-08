@@ -4,9 +4,6 @@ import android.os.Bundle
 
 import code.name.player.musicplayer.R
 
-/**
- * @author Hemanth S (h4h13).
- */
 
 class ImageSettingFragment : AbsSettingsFragment() {
     override fun invalidateSettings() {

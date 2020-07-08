@@ -5,10 +5,6 @@ import code.name.player.musicplayer.mvp.BaseView
 import java.util.*
 
 
-/**
- * Created by hemanths on 20/08/17.
- */
-
 interface SearchContract {
     interface SearchView : BaseView<ArrayList<Any>>
 

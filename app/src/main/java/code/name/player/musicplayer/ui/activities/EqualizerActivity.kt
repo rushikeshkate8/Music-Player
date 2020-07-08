@@ -16,9 +16,6 @@ import com.facebook.ads.AudienceNetworkAds
 import kotlinx.android.synthetic.main.activity_equalizer.*
 
 
-/**
- * @author Hemanth S (h4h13).
- */
 
 class EqualizerActivity : AbsMusicServiceActivity(), AdapterView.OnItemSelectedListener {
 

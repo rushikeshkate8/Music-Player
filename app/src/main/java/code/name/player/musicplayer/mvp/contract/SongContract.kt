@@ -8,9 +8,6 @@ import code.name.player.musicplayer.mvp.BaseView
 import java.util.ArrayList
 
 
-/**
- * Created by hemanths on 10/08/17.
- */
 
 interface SongContract {
 

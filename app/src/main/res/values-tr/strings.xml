@@ -60,7 +60,7 @@
     <string name="app_widget_big_name">Retro music - Büyük</string>
     <string name="app_widget_card_name">Retro music - Kart</string>
     <string name="app_widget_classic_name">Retro music - Klasik</string>
-    <string name="app_widget_small_name">Retro music - Küçük</string>
+    <string name="app_widget_small_name">Music Player - Küçük</string>
     <string name="artist">Sanatçı</string>
     <string name="artists">Sanatçılar</string>
     <string name="audio_focus_denied">Ses odaklaması reddedildi.</string>

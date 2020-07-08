@@ -7,9 +7,7 @@ import io.reactivex.Observable;
 import retrofit2.http.GET;
 import retrofit2.http.Query;
 
-/**
- * Created by hemanths on 28/07/17.
- */
+
 
 public interface KuGouApiService {
 

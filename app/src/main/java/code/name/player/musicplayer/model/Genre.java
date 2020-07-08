@@ -3,9 +3,6 @@ package code.name.player.musicplayer.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-/**
- * @author Hemanth S (h4h13).
- */
 
 public class Genre implements Parcelable {
 

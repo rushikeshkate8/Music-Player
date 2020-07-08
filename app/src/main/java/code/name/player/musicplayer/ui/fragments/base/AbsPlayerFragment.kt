@@ -5,13 +5,19 @@ import android.content.ContentUris
 import android.content.Context
 import android.content.Intent
 import android.media.MediaMetadataRetriever
+import android.net.Uri
 import android.os.AsyncTask
+import android.os.Build
 import android.os.Bundle
 import android.provider.MediaStore
+import android.provider.Settings
 import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
+import androidx.annotation.RequiresApi
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.widget.Toolbar
+import code.name.monkey.retromusic.util.RingtoneManager
 import code.name.player.appthemehelper.ThemeStore
 import code.name.player.musicplayer.R
 import code.name.player.musicplayer.dialogs.*
@@ -25,15 +31,18 @@ import code.name.player.musicplayer.util.MusicUtil
 import code.name.player.musicplayer.util.NavigationUtil
 import code.name.player.musicplayer.util.PreferenceUtil
 import code.name.player.musicplayer.util.RetroUtil
-import code.name.player.musicplayer.views.FitSystemWindowsLayout
+import java.io.File
 
 abstract class AbsPlayerFragment : AbsMusicServiceFragment(), Toolbar.OnMenuItemClickListener, PaletteColorHolder, PlayerAlbumCoverFragment.Callbacks {
     var callbacks: Callbacks? = null
         private set
     private var updateIsFavoriteTask: AsyncTask<*, *, *>? = null
-
+    private lateinit var context2: Context
 
     override fun onAttach(context: Context?) {
+        if (context != null) {
+            context2 = context
+        }
         super.onAttach(context)
         try {
             callbacks = context as Callbacks?
@@ -48,6 +57,7 @@ abstract class AbsPlayerFragment : AbsMusicServiceFragment(), Toolbar.OnMenuItem
         callbacks = null
     }
 
+    @RequiresApi(Build.VERSION_CODES.M)
     override fun onMenuItemClick(item: MenuItem): Boolean {
         val song = MusicPlayerRemote.currentSong
         when (item.itemId) {
@@ -57,8 +67,15 @@ abstract class AbsPlayerFragment : AbsMusicServiceFragment(), Toolbar.OnMenuItem
             }
             R.id.action_share -> {
                 if (fragmentManager != null) {
-                    SongShareDialog.create(song).show(fragmentManager!!, "SHARE_SONG")
-                }
+                    //SongShareDialog.create(song).show(fragmentManager!!, "SHARE_SONG")
+                    val share = Intent(Intent.ACTION_SEND) //Create a new action_send intent
+                    share.type = "audio/*" //What kind of file the intent gets
+                    val file = File(song.data)
+                    val sharePath = file.absolutePath
+                    val uri = Uri.parse(sharePath)
+                    share.putExtra(Intent.EXTRA_STREAM, uri) //Pass the audio file to the intent
+                    context2.startActivity(share)
+                    }
                 return true
             }
             R.id.action_delete_from_device -> {
@@ -118,7 +135,27 @@ abstract class AbsPlayerFragment : AbsMusicServiceFragment(), Toolbar.OnMenuItem
                 return true
             }
             R.id.action_set_as_ringtone -> {
-                MusicUtil.setRingtone(activity!!, song.id)
+                //MusicUtil.setRingtone(activity!!, song.id)
+               // return true
+                val settingsCanWrite = Settings.System.canWrite(context2)
+                if (!settingsCanWrite)
+                {
+                    AlertDialog.Builder(context2)
+                            .setTitle(context2.getString(R.string.set_ringtone))
+                            .setMessage(context2.getString(R.string.set_ringtone_allow_permission_messege))
+                            .setPositiveButton(android.R.string.ok) { _, _ ->
+                                val intent = Intent(Settings.ACTION_MANAGE_WRITE_SETTINGS)
+                                intent.data = Uri.parse("package:" + context2.applicationContext.packageName)
+                                context2.startActivity(intent)
+                            }
+                            .setNegativeButton(android.R.string.cancel, null)
+                            .create().show()
+                }
+                else
+                {
+                    val ringtoneManager = RingtoneManager(context2)
+                    ringtoneManager.setRingtone(song)
+                }
                 return true
             }
             R.id.action_settings -> {
@@ -205,13 +242,6 @@ abstract class AbsPlayerFragment : AbsMusicServiceFragment(), Toolbar.OnMenuItem
         if (PreferenceUtil.getInstance().fullScreenMode) {
             if (view.findViewById<View>(R.id.status_bar) != null)
                 view.findViewById<View>(R.id.status_bar).visibility = View.GONE
-        }
-    }
-
-    fun setSafeArea(safeArea: View) {
-        val layout = safeArea.findViewById<FitSystemWindowsLayout>(R.id.safeArea)
-        if (layout != null) {
-            layout.isFit = !PreferenceUtil.getInstance().fullScreenMode
         }
     }
 

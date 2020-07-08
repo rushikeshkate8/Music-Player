@@ -6,9 +6,6 @@ import code.name.player.musicplayer.mvp.BaseView
 
 import java.util.ArrayList
 
-/**
- * @author Hemanth S (h4h13).
- */
 
 interface GenreDetailsContract {
     interface GenreDetailsView : BaseView<ArrayList<Song>>

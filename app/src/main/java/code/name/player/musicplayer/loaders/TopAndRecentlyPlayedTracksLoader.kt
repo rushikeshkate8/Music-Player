@@ -12,9 +12,7 @@ import code.name.player.musicplayer.providers.SongPlayCountStore
 import io.reactivex.Observable
 import java.util.*
 
-/**
- * Created by hemanths on 16/08/17.
- */
+
 
 object TopAndRecentlyPlayedTracksLoader {
 

@@ -8,10 +8,6 @@ import code.name.player.musicplayer.mvp.BaseView
 import java.util.ArrayList
 
 
-/**
- * Created by hemanths on 16/08/17.
- */
-
 interface ArtistContract {
     interface ArtistView : BaseView<ArrayList<Artist>>
 

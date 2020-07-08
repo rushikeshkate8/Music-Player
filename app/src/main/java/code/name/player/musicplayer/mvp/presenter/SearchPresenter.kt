@@ -5,9 +5,6 @@ import code.name.player.musicplayer.mvp.contract.SearchContract
 import java.util.*
 import java.util.concurrent.TimeUnit
 
-/**
- * Created by hemanths on 20/08/17.
- */
 
 class SearchPresenter(private val view: SearchContract.SearchView) : Presenter(), SearchContract.SearchPresenter {
 

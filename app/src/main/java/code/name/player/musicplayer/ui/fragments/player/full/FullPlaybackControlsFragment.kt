@@ -26,9 +26,6 @@ import code.name.player.musicplayer.util.ViewUtil
 import kotlinx.android.synthetic.main.fragment_full_player_controls.*
 import kotlinx.android.synthetic.main.player_time.*
 
-/**
- * Created by hemanths on 20/09/17.
- */
 
 class FullPlaybackControlsFragment : AbsPlayerControlsFragment() {
 

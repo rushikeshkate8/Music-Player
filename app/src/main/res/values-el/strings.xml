@@ -60,7 +60,7 @@
     <string name="app_widget_big_name">Retro Music - Μεγάλο</string>
     <string name="app_widget_card_name">Retro Music - Κάρτα</string>
     <string name="app_widget_classic_name">Retro Music - Κλασσικό</string>
-    <string name="app_widget_small_name">Retro Music - Μικρό</string>
+    <string name="app_widget_small_name">Music Player - Μικρό</string>
     <string name="artist">Καλλιτέχνης</string>
     <string name="artists">Καλλιτέχνες</string>
     <string name="audio_focus_denied">Η εστίαση ήχου απορρίφθηκε.</string>
@@ -265,6 +265,7 @@
     <string name="normal">Κανονικό</string>
     <string name="pref_summary_lock_screen">Ενεργοποίηση διακοπτών ρύθμισης στην οθόνη κλειδώματος.</string>
     <string name="primary_color_desc">Το βασικό χρώμα του θέματος, η προεπιλογή είναι το άσπρο.</string>
+    <string name="window">विंडो</string>
     <!-- SAF -->
     <!-- SAF guide -->
     <!-- Message displayed when tag editing fails -->

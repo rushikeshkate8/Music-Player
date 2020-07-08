@@ -13,9 +13,6 @@ import io.reactivex.Observable
 import io.reactivex.annotations.NonNull
 import java.util.*
 
-/**
- * Created by hemanths on 16/08/17.
- */
 
 object PlaylistSongsLoader {
 

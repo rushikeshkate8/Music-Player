@@ -6,10 +6,6 @@ import code.name.player.musicplayer.mvp.contract.GenreDetailsContract
 import java.util.*
 
 
-/**
- * Created by hemanths on 20/08/17.
- */
-
 class GenreDetailsPresenter(private val view: GenreDetailsContract.GenreDetailsView,
                             private val genreId: Int) : Presenter(), GenreDetailsContract.Presenter {
 

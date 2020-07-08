@@ -7,10 +7,6 @@ import code.name.player.musicplayer.mvp.contract.ArtistDetailContract
 import code.name.player.musicplayer.ui.activities.ArtistDetailActivity
 
 
-/**
- * Created by hemanths on 20/08/17.
- */
-
 class ArtistDetailsPresenter(private val view: ArtistDetailContract.ArtistsDetailsView,
                              private val bundle: Bundle) : Presenter(), ArtistDetailContract.Presenter {
 

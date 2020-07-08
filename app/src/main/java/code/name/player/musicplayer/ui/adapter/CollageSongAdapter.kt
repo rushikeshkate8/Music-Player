@@ -20,9 +20,6 @@ import code.name.player.musicplayer.ui.adapter.CollageSongAdapter.CollageSongVie
 import code.name.player.musicplayer.ui.adapter.base.MediaEntryViewHolder
 import java.util.*
 
-/**
- * @author Hemanth S (h4h13).
- */
 class CollageSongAdapter(private val activity: Activity, private val dataSet: ArrayList<Song>) : RecyclerView.Adapter<CollageSongViewHolder>() {
 
     override fun onBindViewHolder(holder: CollageSongViewHolder, position: Int) {

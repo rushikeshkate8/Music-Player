@@ -25,9 +25,6 @@ import kotlinx.android.synthetic.main.fragment_lock_screen_playback_controls.*
 import kotlinx.android.synthetic.main.media_button.*
 import kotlinx.android.synthetic.main.player_time.*
 
-/**
- * @author Hemanth S (h4h13).
- */
 class LockScreenPlayerControlsFragment : AbsPlayerControlsFragment() {
 
     private var progressViewUpdateHelper: MusicProgressViewUpdateHelper? = null

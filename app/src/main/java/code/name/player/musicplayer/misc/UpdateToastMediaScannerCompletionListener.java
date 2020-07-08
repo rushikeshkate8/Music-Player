@@ -10,9 +10,6 @@ import java.lang.ref.WeakReference;
 
 import code.name.player.musicplayer.R;
 
-/**
- * @author Karim Abou Zeid (kabouzeid)
- */
 public class UpdateToastMediaScannerCompletionListener implements MediaScannerConnection.OnScanCompletedListener {
     private final String[] toBeScanned;
     private final String scannedFiles;

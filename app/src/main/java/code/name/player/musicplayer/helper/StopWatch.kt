@@ -1,10 +1,6 @@
 package code.name.player.musicplayer.helper
 
-/**
- * Simple thread safe stop watch.
- *
- * @author Karim Abou Zeid (kabouzeid)
- */
+
 class StopWatch {
 
     /**

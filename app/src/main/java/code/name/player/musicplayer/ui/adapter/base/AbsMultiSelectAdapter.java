@@ -4,11 +4,14 @@ import android.content.Context;
 import androidx.annotation.MenuRes;
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.RecyclerView;
+
+import android.net.Uri;
 import android.view.Menu;
 import android.view.MenuItem;
 
 import com.afollestad.materialcab.MaterialCab;
 
+import java.io.File;
 import java.util.ArrayList;
 
 import code.name.player.musicplayer.R;
@@ -113,9 +116,7 @@ public abstract class AbsMultiSelectAdapter<VH extends RecyclerView.ViewHolder, 
     protected String getName(I object) {
         return object.toString();
     }
-
     @Nullable
     protected abstract I getIdentifier(int position);
-
     protected abstract void onMultipleItemAction(MenuItem menuItem, ArrayList<I> selection);
 }

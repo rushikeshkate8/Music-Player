@@ -22,9 +22,6 @@ import code.name.player.musicplayer.util.PreferenceUtil
 import kotlinx.android.synthetic.main.fragment_simple_controls_fragment.*
 import kotlinx.android.synthetic.main.media_button.*
 
-/**
- * @author Hemanth S (h4h13).
- */
 
 class SimplePlaybackControlsFragment : AbsPlayerControlsFragment() {
 

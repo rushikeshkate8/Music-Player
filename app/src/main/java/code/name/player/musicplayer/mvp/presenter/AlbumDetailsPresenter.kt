@@ -5,9 +5,6 @@ import code.name.player.musicplayer.mvp.Presenter
 import code.name.player.musicplayer.mvp.contract.AlbumDetailsContract
 
 
-/**
- * Created by hemanths on 20/08/17.
- */
 
 class AlbumDetailsPresenter(private val view: AlbumDetailsContract.AlbumDetailsView, private val albumId: Int) : Presenter(), AlbumDetailsContract.Presenter {
 

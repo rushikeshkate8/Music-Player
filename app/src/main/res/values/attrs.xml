@@ -44,13 +44,14 @@
             <enum name="right" value="2" />
         </attr>
     </declare-styleable>
+    <!--
     <declare-styleable name="ContributorsView">
         <attr name="profile_url" format="string" />
         <attr name="profile_name" format="string" />
         <attr name="profile_summary" format="string" />
         <attr name="profile_link" format="string" />
     </declare-styleable>
-
+    -->
     <declare-styleable name="InsettableFrameLayout_Layout">
         <attr name="layout_ignoreInsets" format="boolean" />
     </declare-styleable>

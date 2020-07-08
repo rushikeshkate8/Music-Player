@@ -3,12 +3,7 @@ package code.name.player.musicplayer.misc
 import android.content.Context
 import androidx.loader.content.AsyncTaskLoader
 
-/**
- * [Issue
- * 14944](http://code.google.com/p/android/issues/detail?id=14944)
- *
- * @author Alexander Blom
- */
+
 abstract class WrappedAsyncTaskLoader<D>
 /**
  * Constructor of `WrappedAsyncTaskLoader`

@@ -22,9 +22,6 @@ import code.name.player.musicplayer.preferences.NowPlayingScreenPreference;
 import code.name.player.musicplayer.preferences.NowPlayingScreenPreferenceDialog;
 import code.name.player.musicplayer.util.NavigationUtil;
 
-/**
- * @author Hemanth S (h4h13).
- */
 
 public abstract class AbsSettingsFragment extends ATEPreferenceFragmentCompat {
     void showProToastAndNavigate(String message) {

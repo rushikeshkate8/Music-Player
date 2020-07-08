@@ -17,7 +17,4 @@ object Injection {
         return SchedulerProvider.getInstance()
     }
 
-    fun provideKuGouApiService(): KuGouApiService {
-        return KogouClient().apiService
-    }
 }

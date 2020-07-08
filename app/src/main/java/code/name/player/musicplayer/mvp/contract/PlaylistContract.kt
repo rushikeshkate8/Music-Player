@@ -6,9 +6,6 @@ import code.name.player.musicplayer.mvp.BaseView
 
 import java.util.ArrayList
 
-/**
- * Created by hemanths on 19/08/17.
- */
 
 interface PlaylistContract {
     interface PlaylistView : BaseView<ArrayList<Playlist>>

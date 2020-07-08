@@ -33,16 +33,14 @@ import android.support.v4.media.session.PlaybackStateCompat;
 import android.telephony.PhoneStateListener;
 import android.telephony.TelephonyManager;
 import android.util.Log;
-import android.view.View;
 import android.widget.Toast;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import com.bumptech.glide.request.transition.Transition;
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import code.name.player.musicplayer.R;
 import code.name.player.musicplayer.appwidgets.AppWidgetBig;
 import code.name.player.musicplayer.appwidgets.AppWidgetCard;
@@ -70,7 +68,6 @@ import code.name.player.musicplayer.service.playback.Playback;
 import code.name.player.musicplayer.util.MusicUtil;
 import code.name.player.musicplayer.util.PreferenceUtil;
 import code.name.player.musicplayer.util.RetroUtil;
-
 import static code.name.player.musicplayer.Constants.ACTION_PAUSE;
 import static code.name.player.musicplayer.Constants.ACTION_PLAY;
 import static code.name.player.musicplayer.Constants.ACTION_PLAY_PLAYLIST;
@@ -92,9 +89,7 @@ import static code.name.player.musicplayer.Constants.REPEAT_MODE_CHANGED;
 import static code.name.player.musicplayer.Constants.RETRO_MUSIC_PACKAGE_NAME;
 import static code.name.player.musicplayer.Constants.SHUFFLE_MODE_CHANGED;
 
-/**
- * @author Karim Abou Zeid (kabouzeid), Andrew Neal
- */
+
 public class MusicService extends Service implements SharedPreferences.OnSharedPreferenceChangeListener, Playback.PlaybackCallbacks {
     public static final String TAG = MusicService.class.getSimpleName();
     public static final String SAVED_POSITION = "POSITION";
@@ -921,7 +916,6 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
     }
 
     public void play() {
-
         synchronized (this) {
             if (requestFocus()) {
                 if (!playback.isPlaying()) {
@@ -947,24 +941,6 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
             } else {
                 Toast.makeText(this, getResources().getString(R.string.audio_focus_denied), Toast.LENGTH_SHORT).show();
             }
-        }
-    }
-
-    public void playSongs(ArrayList<Song> songs, int shuffleMode) {
-        if (songs != null && !songs.isEmpty()) {
-            if (shuffleMode == SHUFFLE_MODE_SHUFFLE) {
-                int startPosition = 0;
-                if (!songs.isEmpty()) {
-                    startPosition = new Random().nextInt(songs.size());
-                }
-                openQueue(songs, startPosition, false);
-                setShuffleMode(shuffleMode);
-            } else {
-                openQueue(songs, 0, false);
-            }
-            play();
-        } else {
-            Toast.makeText(getApplicationContext(), R.string.playlist_is_empty, Toast.LENGTH_LONG).show();
         }
     }
 
@@ -1102,7 +1078,6 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
         final Intent intent = new Intent(what.replace(RETRO_MUSIC_PACKAGE_NAME, MUSIC_PACKAGE_NAME));
 
         final Song song = getCurrentSong();
-
         intent.putExtra("id", song.id);
         intent.putExtra("artist", song.artistName);
         intent.putExtra("album", song.albumName);
@@ -1111,7 +1086,6 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
         intent.putExtra("position", (long) getSongProgressMillis());
         intent.putExtra("playing", isPlaying());
         intent.putExtra("scrobbling_source", RETRO_MUSIC_PACKAGE_NAME);
-
         sendStickyBroadcast(intent);
 
     }

@@ -10,9 +10,6 @@ import android.os.Build
 import code.name.player.musicplayer.service.MusicService
 
 
-/**
- * @author Eugene Cheung (arkon)
- */
 class BootReceiver : BroadcastReceiver() {
     override fun onReceive(context: Context, intent: Intent) {
         val widgetManager = AppWidgetManager.getInstance(context)

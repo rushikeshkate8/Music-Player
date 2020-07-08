@@ -2,10 +2,6 @@ package code.name.player.musicplayer.misc
 
 import com.google.android.material.appbar.AppBarLayout
 
-/**
- * @author Hemanth S (h4h13).
- * https://stackoverflow.com/a/33891727
- */
 
 abstract class AppBarStateChangeListener : AppBarLayout.OnOffsetChangedListener {
 

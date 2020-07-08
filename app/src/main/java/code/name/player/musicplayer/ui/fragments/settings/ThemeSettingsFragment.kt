@@ -15,9 +15,6 @@ import code.name.player.musicplayer.appshortcuts.DynamicShortcutManager
 import code.name.player.musicplayer.util.PreferenceUtil
 import com.afollestad.materialdialogs.color.ColorChooserDialog
 
-/**
- * @author Hemanth S (h4h13).
- */
 
 class ThemeSettingsFragment : AbsSettingsFragment() {
 

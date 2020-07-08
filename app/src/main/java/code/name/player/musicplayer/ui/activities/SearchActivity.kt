@@ -11,6 +11,7 @@ import android.speech.RecognizerIntent
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
+import android.widget.LinearLayout
 import android.widget.TextView.BufferType
 import android.widget.Toast
 import androidx.appcompat.widget.SearchView.OnQueryTextListener
@@ -24,11 +25,14 @@ import code.name.player.musicplayer.mvp.presenter.SearchPresenter
 import code.name.player.musicplayer.ui.activities.base.AbsMusicServiceActivity
 import code.name.player.musicplayer.ui.adapter.SearchAdapter
 import code.name.player.musicplayer.util.RetroUtil
+import com.facebook.ads.AdSize
+import com.facebook.ads.AdView
+import com.facebook.ads.AudienceNetworkAds
 import kotlinx.android.synthetic.main.activity_search.*
 import java.util.*
 
 class SearchActivity : AbsMusicServiceActivity(), OnQueryTextListener, SearchContract.SearchView, TextWatcher {
-
+    private var adView: AdView? = null
     private var searchPresenter: SearchPresenter? = null
     private var searchAdapter: SearchAdapter? = null
     private var query: String? = null
@@ -39,7 +43,27 @@ class SearchActivity : AbsMusicServiceActivity(), OnQueryTextListener, SearchCon
         setContentView(R.layout.activity_search)
 
         searchPresenter = SearchPresenter(this)
+        AudienceNetworkAds.initialize(this)
+        // Instantiate an AdView object.
+        // NOTE: The placement ID from the Facebook Monetization Manager identifies your App.
+        // To get test ads, add IMG_16_9_APP_INSTALL# to your placement id. Remove this when your app is ready to serve real ads.
 
+        // Instantiate an AdView object.
+        // NOTE: The placement ID from the Facebook Monetization Manager identifies your App.
+        // To get test ads, add IMG_16_9_APP_INSTALL# to your placement id. Remove this when your app is ready to serve real ads.
+        adView = AdView(this, "266586284404690_268385090891476", AdSize.BANNER_HEIGHT_50)
+
+        // Find the Ad Container
+
+        // Find the Ad Container
+        val adContainer = findViewById<View>(R.id.search_banner_ad) as LinearLayout
+
+        // Add the ad view to your activity layout
+
+        // Add the ad view to your activity layout
+        adContainer.addView(adView)
+        // Request an ad
+        adView!!.loadAd()
         setStatusbarColorAuto()
         setNavigationbarColorAuto()
         setTaskDescriptionColorAuto()

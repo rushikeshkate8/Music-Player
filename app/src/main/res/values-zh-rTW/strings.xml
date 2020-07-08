@@ -54,7 +54,7 @@
     <string name="app_shortcut_top_tracks_short">最佳單曲</string>
     <string name="app_widget_big_name">Retro music - 大型</string>
     <string name="app_widget_classic_name">Retro music - 經典</string>
-    <string name="app_widget_small_name">Retro music - 小型</string>
+    <string name="app_widget_small_name">Music Player- 小型</string>
     <string name="artist">演唱者</string>
     <string name="artists">演唱者</string>
     <string name="audio_focus_denied">無法控制音訊焦點。</string>

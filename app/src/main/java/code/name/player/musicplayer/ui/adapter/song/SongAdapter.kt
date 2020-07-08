@@ -29,10 +29,6 @@ import com.afollestad.materialcab.MaterialCab
 import com.simplecityapps.recyclerview_fastscroll.views.FastScrollRecyclerView
 import java.util.*
 
-/**
- * Created by hemanths on 13/08/17.
- */
-
 open class SongAdapter @JvmOverloads constructor(protected val activity: AppCompatActivity, dataSet: ArrayList<Song>,
                                                  @param:LayoutRes protected var itemLayoutRes: Int, usePalette: Boolean, cabHolder: CabHolder?,
                                                  showSectionName: Boolean = true) : AbsMultiSelectAdapter<SongAdapter.ViewHolder, Song>(activity, cabHolder, R.menu.menu_media_selection), MaterialCab.Callback, FastScrollRecyclerView.SectionedAdapter {

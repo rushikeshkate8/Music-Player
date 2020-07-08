@@ -24,9 +24,6 @@ import code.name.player.musicplayer.util.PreferenceUtil
 import kotlinx.android.synthetic.main.fragment_material_playback_controls.*
 import kotlinx.android.synthetic.main.player_time.*
 
-/**
- * @author Hemanth S (h4h13).
- */
 class MaterialControlsFragment : AbsPlayerControlsFragment() {
 
     private var lastPlaybackControlsColor: Int = 0

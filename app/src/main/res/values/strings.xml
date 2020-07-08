@@ -526,7 +526,7 @@
     <string name="made_with_love">Made with ❤️ in India</string>
     <string name="clear_app_data">Clear app data</string>
     <string name="bug_report_summary">An unexpected error occurred. Sorry you found this bug, if it
-    keeps crashing \"Clear app data\" or send an Email </string>
+    keeps crashing \"Clear app data\"</string>
     <string name="error">Error</string>
     <string name="base_color_theme">Base color theme</string>
     <string name="now_playing_themes">9+ now playing themes</string>
@@ -594,4 +594,8 @@
     <string name="pinterest_page">Pinterest</string>
     <string name="pinterest_page_summary">Hmm</string>
     <string name="equilizer_warning">*Warning: We don\'t recommend to use Equalizer, We believe without using Equalizer songs has better sound quality.</string>
+    <string name="set_ringtone">Set ringtone</string>
+    <string name="set_ringtone_allow_permission_messege">Allow Music Player to modify audio settings</string>
+    <string name="song_inserted_into_the_playlist">Song inserted into the Playlist</string>
+    <string name="playlist_created">Playlist created</string>
 </resources>

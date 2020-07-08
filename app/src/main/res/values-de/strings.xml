@@ -55,7 +55,7 @@
     <string name="app_widget_big_name">Retro Music - Big</string>
     <string name="app_widget_card_name">Retro Musik - Karte</string>
     <string name="app_widget_classic_name">Retro Music - Classic</string>
-    <string name="app_widget_small_name">Retro Music - Klein</string>
+    <string name="app_widget_small_name">Music Player - Klein</string>
     <string name="artist">Künstler</string>
     <string name="artists">Künstler</string>
     <string name="audio_focus_denied">Audio Fokus verweigert.</string>

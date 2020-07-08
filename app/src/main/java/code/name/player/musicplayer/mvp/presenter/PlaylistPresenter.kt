@@ -6,9 +6,6 @@ import code.name.player.musicplayer.mvp.contract.PlaylistContract
 import java.util.*
 
 
-/**
- * Created by hemanths on 19/08/17.
- */
 
 class PlaylistPresenter(private val view: PlaylistContract.PlaylistView) : Presenter(), PlaylistContract.Presenter {
 

@@ -4,10 +4,7 @@ import android.content.Context
 import android.view.View
 import androidx.viewpager.widget.ViewPager
 
-/**
- * 实现ViewPager左右滑动时的时差
- * Created by xmuSistone on 2016/9/18.
- */
+
 class CarousalPagerTransformer(context: Context) : ViewPager.PageTransformer {
 
     private val maxTranslateOffsetX: Int

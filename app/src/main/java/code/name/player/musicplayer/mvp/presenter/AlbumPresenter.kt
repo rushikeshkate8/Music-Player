@@ -6,9 +6,6 @@ import code.name.player.musicplayer.mvp.contract.AlbumContract
 import java.util.*
 
 
-/**
- * Created by hemanths on 12/08/17.
- */
 
 class AlbumPresenter(private val view: AlbumContract.AlbumView) : Presenter(), AlbumContract.Presenter {
 

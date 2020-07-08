@@ -8,9 +8,6 @@ import code.name.player.musicplayer.R
 import code.name.player.musicplayer.helper.MusicPlayerRemote
 import code.name.player.musicplayer.util.PreferenceUtil
 
-/**
- * @author Hemanth S (h4h13).
- */
 
 class NotificationSettingsFragment : AbsSettingsFragment() {
     override fun invalidateSettings() {

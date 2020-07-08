@@ -43,9 +43,6 @@ import code.name.player.musicplayer.model.Playlist;
 import code.name.player.musicplayer.model.Song;
 import code.name.player.musicplayer.util.RetroUtil;
 
-/**
- * @author Hemanth S (h4h13).
- */
 @TargetApi(21)
 public class WearBrowserService extends MediaBrowserService {
 

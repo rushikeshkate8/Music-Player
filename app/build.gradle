@@ -15,57 +15,21 @@ android {
         vectorDrawables.useSupportLibrary = true
 
         applicationId "code.name.player.musicplayer"
-        versionCode 6
-        versionName '4.12'
+        versionCode 10
+        versionName '4.506'
         multiDexEnabled true
-
-        //  buildConfigField("String", "GOOGLE_PLAY_LICENSING_KEY", "\"${getProperty(getProperties('../public.properties'), 'GOOGLE_PLAY_LICENSE_KEY')}\"")
     }
-    /*
-    signingConfigs {
-        release {
-            Properties properties = getProperties('/Users/hemanths/Desktop/KeepSafe/retro.properties')
-            storeFile file(getProperty(properties, 'storeFile'))
-            keyAlias getProperty(properties, 'keyAlias')
-            storePassword getProperty(properties, 'storePassword')
-            keyPassword getProperty(properties, 'keyPassword')
-        }
-    } */
+
     buildTypes {
         release {
             minifyEnabled true
             shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-            //resValue "string", "cast_app_id", "BA9C3F5E"
-            //signingConfig signingConfigs.release
         }
-        /*
-        debug {
-            applicationIdSuffix '.debug'
-            versionNameSuffix ' DEBUG (' + gitBranch() + ')'
-            resValue "string", "cast_app_id", "BA9C3F5E"
 
-        } */
     }
 
-   /*
-    flavorDimensions "default"
 
-    productFlavors {
-        normal {
-            versionCode defaultConfig.versionCode + 10000
-            versionName defaultConfig.versionName + "_" + getDate()
-            dimension "default"
-        }
-    }
-    */
-    /*
-    packagingOptions {
-        exclude 'META-INF/LICENSE'
-        exclude 'META-INF/NOTICE'
-        exclude 'META-INF/rxjava.properties'
-    }
-    */
     lintOptions {
         disable 'MissingTranslation'
         disable 'InvalidPackage'
@@ -82,25 +46,6 @@ android {
 
 
 }
-/*
-def getProperties(String fileName) {
-    final Properties properties = new Properties()
-    def file = file(fileName)
-    if (file.exists()) {
-        file.withInputStream { stream -> properties.load(stream) }
-    }
-    return properties
-}
-
-static def getProperty(Properties properties, String name) {
-    return properties.getProperty(name) ?: "$name missing"
-}
-*/
-/*
-static def getDate() {
-    new Date().format('MMdd')
-}
-*/
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')

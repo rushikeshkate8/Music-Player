@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.content.*
 import android.content.pm.PackageManager
 import android.os.Bundle
+import android.os.Handler
 import android.provider.MediaStore
 import android.util.Log
 import android.view.MenuItem
@@ -25,7 +26,10 @@ import code.name.player.musicplayer.ui.fragments.mainactivity.LibraryFragment
 import code.name.player.musicplayer.ui.fragments.mainactivity.home.BannerHomeFragment
 import code.name.player.musicplayer.util.NavigationUtil
 import code.name.player.musicplayer.util.PreferenceUtil
-import com.facebook.ads.*
+import com.facebook.ads.AdSize
+import com.facebook.ads.AdView
+import com.facebook.ads.AudienceNetworkAds
+import com.facebook.ads.InterstitialAd
 import io.reactivex.disposables.CompositeDisposable
 import java.util.*
 
@@ -35,6 +39,8 @@ class MainActivity : AbsSlidingMusicPanelActivity(), SharedPreferences.OnSharedP
     private var blockRequestPermissions: Boolean = false
     private val disposable = CompositeDisposable()
     private var adView: AdView? = null
+    var isAdShowed = true
+    private var interstitialAd: InterstitialAd? = null
     private val broadcastReceiver = object : BroadcastReceiver() {
         override fun onReceive(context: Context, intent: Intent) {
             val action = intent.action
@@ -61,33 +67,16 @@ class MainActivity : AbsSlidingMusicPanelActivity(), SharedPreferences.OnSharedP
         setDrawUnderStatusBar()
         super.onCreate(savedInstanceState)
         AudienceNetworkAds.initialize(this)
-        // Instantiate an AdView object.
-        // NOTE: The placement ID from the Facebook Monetization Manager identifies your App.
-        // To get test ads, add IMG_16_9_APP_INSTALL# to your placement id. Remove this when your app is ready to serve real ads.
-
-        // Instantiate an AdView object.
-        // NOTE: The placement ID from the Facebook Monetization Manager identifies your App.
-        // To get test ads, add IMG_16_9_APP_INSTALL# to your placement id. Remove this when your app is ready to serve real ads.
         adView = AdView(this, "266586284404690_267172794346039", AdSize.BANNER_HEIGHT_50)
-
-        // Find the Ad Container
-
-        // Find the Ad Container
         val adContainer = findViewById<View>(R.id.banner_container) as LinearLayout
-
-        // Add the ad view to your activity layout
-
-        // Add the ad view to your activity layout
         adContainer.addView(adView)
-        // Request an ad
         adView!!.loadAd()
+        interstitialAd = InterstitialAd(this, "266586284404690_269005657496086")
         getBottomNavigationView().setOnNavigationItemSelectedListener {
             PreferenceUtil.getInstance().lastPage = it.itemId
             selectedFragment(it.itemId)
             true
         }
-
-        //setUpDrawerLayout()
 
         if (savedInstanceState == null) {
             selectedFragment(PreferenceUtil.getInstance().lastPage)
@@ -112,15 +101,27 @@ class MainActivity : AbsSlidingMusicPanelActivity(), SharedPreferences.OnSharedP
         } catch (e: PackageManager.NameNotFoundException) {
             e.printStackTrace()
         }
-
     }
 
+    override fun onPause() {
+        if(isAdShowed) {
+            isAdShowed = false
+            val handler = Handler()
+            handler.postDelayed(Runnable { // Check if interstitialAd has been loaded successfully
+                interstitialAd?.loadAd()
+            }, 480000)
+        }
+        super.onPause()
+    }
     override fun onResume() {
         super.onResume()
+        if(interstitialAd?.isAdLoaded!!) {
+            isAdShowed = true
+            interstitialAd!!.show()
+        }
         val screenOnOff = IntentFilter()
         screenOnOff.addAction(Intent.ACTION_SCREEN_OFF)
         registerReceiver(broadcastReceiver, screenOnOff)
-
         PreferenceUtil.getInstance().registerOnSharedPreferenceChangedListener(this)
 
         if (intent.hasExtra("expand")) {
@@ -132,6 +133,7 @@ class MainActivity : AbsSlidingMusicPanelActivity(), SharedPreferences.OnSharedP
     }
 
     override fun onDestroy() {
+        interstitialAd?.destroy()
         adView?.destroy()
         super.onDestroy()
         disposable.clear()

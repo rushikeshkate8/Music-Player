@@ -30,9 +30,6 @@ import code.name.player.musicplayer.util.color.MediaNotificationProcessor
 import com.bumptech.glide.request.target.Target
 import com.bumptech.glide.request.transition.Transition
 
-/**
- * @author Hemanth S (h4h13).
- */
 class PlayingNotificationOreo : PlayingNotification() {
 
     private var target: Target<BitmapPaletteWrapper>? = null

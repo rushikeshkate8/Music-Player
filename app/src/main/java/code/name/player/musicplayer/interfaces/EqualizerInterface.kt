@@ -4,9 +4,6 @@ import android.media.audiofx.BassBoost
 import android.media.audiofx.Equalizer
 import android.media.audiofx.Virtualizer
 
-/**
- * @author Hemanth S (h4h13).
- */
 
 interface EqualizerInterface {
     val bandLevelLow: Int

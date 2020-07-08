@@ -64,7 +64,7 @@
     <string name="app_widget_big_name">Retro music - Голям</string>
     <string name="app_widget_card_name">Retro music - Карта</string>
     <string name="app_widget_classic_name">Retro music - Класически</string>
-    <string name="app_widget_small_name">Retro music - Малък</string>
+    <string name="app_widget_small_name">Music Player - Малък</string>
     <string name="artist">Изпълнител</string>
     <string name="artists">Изпълнители</string>
     <string name="audio_focus_denied">Аудио фокус отказан.</string>

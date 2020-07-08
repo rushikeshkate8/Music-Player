@@ -13,9 +13,6 @@ import code.name.player.musicplayer.model.Genre
 import code.name.player.musicplayer.ui.adapter.base.MediaEntryViewHolder
 import code.name.player.musicplayer.util.NavigationUtil
 
-/**
- * @author Hemanth S (h4h13).
- */
 
 class GenreAdapter(private val mActivity: Activity, dataSet: ArrayList<Genre>, private val mItemLayoutRes: Int) : RecyclerView.Adapter<GenreAdapter.ViewHolder>() {
     var dataSet = ArrayList<Genre>()

@@ -17,9 +17,7 @@ import code.name.player.musicplayer.R;
 import code.name.player.musicplayer.service.playback.Playback;
 import code.name.player.musicplayer.util.PreferenceUtil;
 
-/**
- * @author Andrew Neal, Karim Abou Zeid (kabouzeid)
- */
+
 public class MultiPlayer implements Playback, MediaPlayer.OnErrorListener, MediaPlayer.OnCompletionListener {
     public static final String TAG = MultiPlayer.class.getSimpleName();
     private MediaPlayer mCurrentMediaPlayer = new MediaPlayer();

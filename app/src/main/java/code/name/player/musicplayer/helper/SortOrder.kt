@@ -12,14 +12,7 @@ package code.name.player.musicplayer.helper
 
 import android.provider.MediaStore
 
-/**
- * Holds all of the sort orders for each list type.
- *
- * @author Andrew Neal (andrewdneal@gmail.com)
- */
-/**
- * This class is never instantiated
- */
+
 class SortOrder {
 
     /**

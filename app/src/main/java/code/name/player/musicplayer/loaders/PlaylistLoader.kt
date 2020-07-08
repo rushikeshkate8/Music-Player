@@ -10,9 +10,6 @@ import code.name.player.musicplayer.model.Playlist
 import io.reactivex.Observable
 import java.util.*
 
-/**
- * Created by hemanths on 16/08/17.
- */
 
 object PlaylistLoader {
     fun makePlaylistCursor(context: Context, selection: String?, values: Array<String>?): Cursor? {

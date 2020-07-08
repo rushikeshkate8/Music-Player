@@ -5,9 +5,6 @@ import code.name.player.musicplayer.mvp.Presenter
 import code.name.player.musicplayer.mvp.contract.GenreContract
 import java.util.*
 
-/**
- * @author Hemanth S (h4h13).
- */
 
 class GenrePresenter(
         private val view: GenreContract.GenreView) : Presenter(), GenreContract.Presenter {

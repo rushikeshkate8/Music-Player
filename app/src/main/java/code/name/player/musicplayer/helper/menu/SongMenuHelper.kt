@@ -1,11 +1,16 @@
 package code.name.player.musicplayer.helper.menu
 
 import android.content.Intent
+import android.net.Uri
+import android.os.Build
+import android.provider.Settings
 import android.view.MenuItem
 import android.view.View
 import android.widget.PopupMenu
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.FragmentActivity
+import code.name.monkey.retromusic.util.RingtoneManager
 import code.name.player.musicplayer.R
 import code.name.player.musicplayer.dialogs.AddToPlaylistDialog
 import code.name.player.musicplayer.dialogs.DeleteSongsDialog
@@ -17,17 +22,39 @@ import code.name.player.musicplayer.ui.activities.tageditor.AbsTagEditorActivity
 import code.name.player.musicplayer.ui.activities.tageditor.SongTagEditorActivity
 import code.name.player.musicplayer.util.MusicUtil
 import code.name.player.musicplayer.util.NavigationUtil
+import com.afollestad.materialdialogs.MaterialDialog
 
 
 object SongMenuHelper {
     val MENU_RES = R.menu.menu_item_song
-
+    @RequiresApi(Build.VERSION_CODES.M)
     fun handleMenuClick(activity: FragmentActivity, song: Song, menuItemId: Int): Boolean {
         when (menuItemId) {
             R.id.action_set_as_ringtone -> {
-                MusicUtil.setRingtone(activity, song.id)
+                val settingsCanWrite = Settings.System.canWrite(activity)
+                if (!settingsCanWrite)
+                    {
+                        MaterialDialog.Builder(activity)
+                                .title(activity.getString(R.string.set_ringtone))
+                                .content(activity.getString(R.string.set_ringtone_allow_permission_messege))
+                                .positiveText(android.R.string.ok)
+                                .onPositive { dialog, which ->
+                                    val intent = Intent(Settings.ACTION_MANAGE_WRITE_SETTINGS)
+                                    intent.data = Uri.parse("package:" + activity.applicationContext.packageName)
+                                    activity.startActivity(intent)
+                                }
+                                .negativeText(android.R.string.cancel)
+                                .onNegative { dialog, which ->  }
+                                .show()
+                    }
+                else
+                    {
+                        val ringtoneManager = RingtoneManager(activity)
+                        ringtoneManager.setRingtone(song)
+                    }
                 return true
             }
+
             R.id.action_share -> {
                 activity.startActivity(Intent.createChooser(MusicUtil.createShareSongFileIntent(song, activity), null))
                 return true
@@ -86,6 +113,7 @@ object SongMenuHelper {
             popupMenu.show()
         }
 
+        @RequiresApi(Build.VERSION_CODES.M)
         override fun onMenuItemClick(item: MenuItem): Boolean {
             return handleMenuClick(activity, song, item.itemId)
         }

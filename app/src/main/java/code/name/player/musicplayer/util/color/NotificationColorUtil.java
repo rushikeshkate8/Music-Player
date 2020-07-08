@@ -15,12 +15,6 @@ import java.util.WeakHashMap;
 
 import code.name.player.musicplayer.util.ImageUtil;
 
-/**
- * Helper class to process legacy (Holo) notifications to make them look like quantum
- * notifications.
- *
- * @hide
- */
 public class NotificationColorUtil {
 
     private static final String TAG = "NotificationColorUtil";

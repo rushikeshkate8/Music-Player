@@ -10,6 +10,8 @@ import android.provider.MediaStore
 import android.provider.MediaStore.Images.Media
 import android.text.TextUtils
 import android.view.MenuItem
+import android.view.View
+import android.widget.LinearLayout
 import android.widget.Toast
 import code.name.player.appthemehelper.ThemeStore
 import code.name.player.appthemehelper.util.TintHelper
@@ -22,6 +24,9 @@ import code.name.player.musicplayer.util.Compressor
 import code.name.player.musicplayer.util.ImageUtil
 import code.name.player.musicplayer.util.PreferenceUtil
 import com.afollestad.materialdialogs.MaterialDialog
+import com.facebook.ads.AdSize
+import com.facebook.ads.AdView
+import com.facebook.ads.AudienceNetworkAds
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
@@ -32,7 +37,7 @@ import java.io.IOException
 import java.util.*
 
 class UserInfoActivity : AbsBaseActivity() {
-
+    private var adView: AdView? = null
     private var disposable = CompositeDisposable()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -42,7 +47,27 @@ class UserInfoActivity : AbsBaseActivity() {
         setNavigationbarColorAuto()
         setTaskDescriptionColorAuto()
         setLightNavigationBar(true)
+        AudienceNetworkAds.initialize(this)
+        // Instantiate an AdView object.
+        // NOTE: The placement ID from the Facebook Monetization Manager identifies your App.
+        // To get test ads, add IMG_16_9_APP_INSTALL# to your placement id. Remove this when your app is ready to serve real ads.
 
+        // Instantiate an AdView object.
+        // NOTE: The placement ID from the Facebook Monetization Manager identifies your App.
+        // To get test ads, add IMG_16_9_APP_INSTALL# to your placement id. Remove this when your app is ready to serve real ads.
+        adView = AdView(this, "266586284404690_268388300891155", AdSize.BANNER_HEIGHT_50)
+
+        // Find the Ad Container
+
+        // Find the Ad Container
+        val adContainer = findViewById<View>(R.id.userinfo_banner_ad) as LinearLayout
+
+        // Add the ad view to your activity layout
+
+        // Add the ad view to your activity layout
+        adContainer.addView(adView)
+        // Request an ad
+        adView!!.loadAd()
         setupToolbar()
 
         bannerTitle.setTextColor(ThemeStore.textColorPrimary(this))

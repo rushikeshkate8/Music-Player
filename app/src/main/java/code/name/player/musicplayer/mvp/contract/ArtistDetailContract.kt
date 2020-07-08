@@ -6,9 +6,6 @@ import code.name.player.musicplayer.mvp.BasePresenter
 import code.name.player.musicplayer.mvp.BaseView
 
 
-/**
- * Created by hemanths on 20/08/17.
- */
 
 interface ArtistDetailContract {
     interface ArtistsDetailsView : BaseView<Artist>

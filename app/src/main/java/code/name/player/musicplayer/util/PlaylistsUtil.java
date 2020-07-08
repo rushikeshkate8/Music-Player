@@ -15,6 +15,7 @@ import android.widget.Toast;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import code.name.player.musicplayer.R;
 import code.name.player.musicplayer.helper.M3UWriter;
@@ -59,9 +60,8 @@ public class PlaylistsUtil {
                     if (uri != null) {
                         // necessary because somehow the MediaStoreObserver is not notified when adding a playlist
                         context.getContentResolver().notifyChange(Uri.parse("content://media"), null);
-                        Toast.makeText(context, context.getResources().getString(
-                                R.string.created_playlist_x, name), Toast.LENGTH_SHORT).show();
-                        id = Integer.parseInt(uri.getLastPathSegment());
+                        Toast.makeText(context, R.string.playlist_created, Toast.LENGTH_SHORT).show();
+                        id = Integer.parseInt( Objects.requireNonNull( uri.getLastPathSegment() ) );
                     }
                 } else {
                     if (cursor.moveToFirst()) {
@@ -131,8 +131,7 @@ public class PlaylistsUtil {
                 numInserted += resolver.bulkInsert(uri, makeInsertItems(songs, offSet, 1000, base));
 
             if (showToastOnFinish) {
-                Toast.makeText(context, context.getResources().getString(
-                        R.string.inserted_x_songs_into_playlist_x, numInserted, getNameForPlaylist(context, playlistId)), Toast.LENGTH_SHORT).show();
+               Toast.makeText( context, R.string.song_inserted_into_the_playlist, Toast.LENGTH_SHORT).show();
             }
         } catch (SecurityException ignored) {
         }

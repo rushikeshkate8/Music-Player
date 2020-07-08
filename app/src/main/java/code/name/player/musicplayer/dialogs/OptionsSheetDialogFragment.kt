@@ -88,7 +88,6 @@ class OptionsSheetDialogFragment : RoundedBottomSheetDialogFragment(), View.OnCl
                 mainActivity.setCurrentFragment(FoldersFragment.newInstance(context), true)
             }
             R.id.actionSettings -> NavigationUtil.goToSettings(mainActivity)
-           // R.id.actionAbout -> NavigationUtil.goToAbout(mainActivity)
             R.id.actionSleepTimer -> if (fragmentManager != null) {
                 SleepTimerDialog().show(fragmentManager!!, TAG)
             }

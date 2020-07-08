@@ -3,9 +3,6 @@ package code.name.player.musicplayer.transform
 import android.view.View
 import androidx.viewpager.widget.ViewPager
 
-/**
- * @author Hemanth S (h4h13).
- */
 
 class NormalPageTransformer : ViewPager.PageTransformer {
 

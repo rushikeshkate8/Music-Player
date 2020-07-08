@@ -60,7 +60,7 @@
     <string name="app_widget_big_name">Retro music - 대형</string>
     <string name="app_widget_card_name">Retro music - 카드</string>
     <string name="app_widget_classic_name">Retro music - 클래식</string>
-    <string name="app_widget_small_name">Retro music - 소형</string>
+    <string name="app_widget_small_name">Music Player - 소형</string>
     <string name="artist">아티스트</string>
     <string name="artists">아티스트</string>
     <string name="audio_focus_denied">오디오 포커스가 거부되었습니다.</string>

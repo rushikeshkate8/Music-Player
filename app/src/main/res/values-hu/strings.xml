@@ -64,7 +64,7 @@
     <string name="app_widget_big_name">Retro music - Nagy</string>
     <string name="app_widget_card_name">Retro music - Kártya</string>
     <string name="app_widget_classic_name">Retro music - Klasszikus</string>
-    <string name="app_widget_small_name">Retro music - Kicsi</string>
+    <string name="app_widget_small_name">Music Player - Kicsi</string>
     <string name="artist">Előadó</string>
     <string name="artists">Előadók</string>
     <string name="audio_focus_denied">Az audiofókusz megtagadva.</string>

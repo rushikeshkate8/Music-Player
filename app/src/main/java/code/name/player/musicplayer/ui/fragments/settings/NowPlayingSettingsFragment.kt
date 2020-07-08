@@ -8,9 +8,7 @@ import code.name.player.musicplayer.R
 import code.name.player.musicplayer.App
 import code.name.player.musicplayer.util.PreferenceUtil
 
-/**
- * @author Hemanth S (h4h13).
- */
+
 
 class NowPlayingSettingsFragment : AbsSettingsFragment(), SharedPreferences.OnSharedPreferenceChangeListener {
 

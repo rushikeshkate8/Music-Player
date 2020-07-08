@@ -10,9 +10,7 @@ import android.os.Bundle
 import code.name.player.musicplayer.appshortcuts.AppShortcutLauncherActivity
 
 
-/**
- * @author Adrian Campos
- */
+
 @TargetApi(Build.VERSION_CODES.N_MR1)
 abstract class BaseShortcutType(internal var context: Context) {
 

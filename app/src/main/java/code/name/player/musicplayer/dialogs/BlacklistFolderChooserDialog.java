@@ -21,9 +21,7 @@ import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.DialogFragment;
 import code.name.player.musicplayer.R;
 
-/**
- * @author Aidan Follestad (afollestad), modified by Karim Abou Zeid
- */
+
 public class BlacklistFolderChooserDialog extends DialogFragment implements MaterialDialog.ListCallback {
 
     private String initialPath = Environment.getExternalStorageDirectory().getAbsolutePath();

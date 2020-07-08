@@ -8,9 +8,6 @@ import code.name.player.musicplayer.util.PreferenceUtil
 import io.reactivex.Observable
 import java.util.*
 
-/**
- * Created by hemanths on 11/08/17.
- */
 
 open class AlbumLoader {
     companion object {

@@ -19,9 +19,6 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 import static code.name.player.musicplayer.Constants.BASE_API_URL_KUGOU;
 
-/**
- * Created by hemanths on 23/08/17.
- */
 
 public class KogouClient {
 

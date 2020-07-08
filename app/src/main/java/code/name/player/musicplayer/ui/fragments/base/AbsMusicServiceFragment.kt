@@ -7,10 +7,6 @@ import androidx.fragment.app.Fragment
 import code.name.player.musicplayer.interfaces.MusicServiceEventListener
 import code.name.player.musicplayer.ui.activities.base.AbsMusicServiceActivity
 
-/**
- * Created by hemanths on 18/08/17.
- */
-
 open class AbsMusicServiceFragment : Fragment(), MusicServiceEventListener {
 
     var playerActivity: AbsMusicServiceActivity? = null

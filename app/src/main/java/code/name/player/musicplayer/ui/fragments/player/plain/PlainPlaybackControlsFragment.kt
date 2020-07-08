@@ -29,9 +29,6 @@ import kotlinx.android.synthetic.main.fragment_plain_controls_fragment.*
 import kotlinx.android.synthetic.main.media_button.*
 import kotlinx.android.synthetic.main.player_time.*
 
-/**
- * @author Hemanth S (h4h13).
- */
 
 class PlainPlaybackControlsFragment : AbsPlayerControlsFragment() {
 

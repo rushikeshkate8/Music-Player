@@ -7,10 +7,6 @@ import android.util.Log
 
 import code.name.player.musicplayer.interfaces.EqualizerInterface
 
-/**
- * @author Hemanth S (h4h13).
- */
-
 class EqualizerHelper private constructor() : EqualizerInterface {
     override val equalizer: Equalizer
     override val bassBoost: BassBoost

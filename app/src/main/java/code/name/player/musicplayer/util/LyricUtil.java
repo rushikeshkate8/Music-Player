@@ -11,9 +11,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
 
-/**
- * Created by hefuyi on 2016/11/8.
- */
+
 
 public class LyricUtil {
 

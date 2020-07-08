@@ -14,9 +14,6 @@ import code.name.player.musicplayer.ui.fragments.base.AbsPlayerFragment
 import code.name.player.musicplayer.ui.fragments.player.PlayerAlbumCoverFragment
 import kotlinx.android.synthetic.main.fragment_simple_player.*
 
-/**
- * @author Hemanth S (h4h13).
- */
 
 class SimplePlayerFragment : AbsPlayerFragment(), PlayerAlbumCoverFragment.Callbacks {
     override fun toolbarGet(): Toolbar {

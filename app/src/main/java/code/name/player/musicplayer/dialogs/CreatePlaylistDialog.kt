@@ -15,9 +15,7 @@ import code.name.player.musicplayer.views.RoundedBottomSheetDialogFragment
 import kotlinx.android.synthetic.main.dialog_playlist.*
 import java.util.*
 
-/**
- * @author Karim Abou Zeid (kabouzeid), Aidan Follestad (afollestad)
- */
+
 class CreatePlaylistDialog : RoundedBottomSheetDialogFragment() {
 
 

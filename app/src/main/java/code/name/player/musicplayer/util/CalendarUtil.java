@@ -3,9 +3,6 @@ package code.name.player.musicplayer.util;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
-/**
- * @author Eugene Cheung (arkon)
- */
 public class CalendarUtil {
     private static final long MS_PER_MINUTE = 60 * 1000;
     private static final long MS_PER_DAY = 24 * 60 * MS_PER_MINUTE;

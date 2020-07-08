@@ -108,10 +108,6 @@ public class NavigationUtil {
         ActivityCompat.startActivity(activity, new Intent(activity, SettingsActivity.class), null);
     }
 
-    public static void goToAbout(@NonNull Activity activity) {
-        //ActivityCompat.startActivity(activity, new Intent(activity, AboutActivity.class), null);
-    }
-
     public static void goToUserInfo(@NonNull Activity activity) {
         ActivityCompat.startActivity(activity, new Intent(activity, UserInfoActivity.class), null);
     }

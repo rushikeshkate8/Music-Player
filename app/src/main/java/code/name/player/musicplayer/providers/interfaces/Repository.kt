@@ -5,9 +5,6 @@ import code.name.player.musicplayer.model.smartplaylist.AbsSmartPlaylist
 import io.reactivex.Observable
 import kotlin.collections.ArrayList
 
-/**
- * Created by hemanths on 11/08/17.
- */
 
 interface Repository {
 

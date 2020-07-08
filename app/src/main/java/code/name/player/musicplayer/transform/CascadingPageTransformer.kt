@@ -4,12 +4,7 @@ import android.annotation.SuppressLint
 import android.view.View
 import androidx.viewpager.widget.ViewPager
 
-/*******************************************************************
- * * * * *   * * * *   *     *       Created by OCN.Yang
- * *     *   *         * *   *       Time:2017/12/7 19:32.
- * *     *   *         *   * *       Email address:ocnyang@gmail.com
- * * * * *   * * * *   *     *.Yang  Web site:www.ocnyang.com
- */
+
 
 class CascadingPageTransformer : ViewPager.PageTransformer {
     /**

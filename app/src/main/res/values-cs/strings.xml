@@ -60,7 +60,7 @@
     <string name="app_shortcut_top_tracks_short">Top Tracks</string>
     <string name="app_widget_big_name">Retro music - Big</string>
     <string name="app_widget_classic_name">Retro music - Classic</string>
-    <string name="app_widget_small_name">Retro music - Small</string>
+    <string name="app_widget_small_name">Music Player - Small</string>
     <string name="artist">Umělec</string>
     <string name="artists">Umělci</string>
     <string name="audio_focus_denied">Zaměření zvuku bylo zamítnuto.</string>

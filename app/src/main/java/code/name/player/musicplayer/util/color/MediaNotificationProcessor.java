@@ -13,9 +13,6 @@ import java.util.List;
 
 import code.name.player.appthemehelper.util.ColorUtil;
 
-/**
- * @author Hemanth S (h4h13).
- */
 public class MediaNotificationProcessor {
 
     /**
