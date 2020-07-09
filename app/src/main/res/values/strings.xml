@@ -598,4 +598,6 @@
     <string name="set_ringtone_allow_permission_messege">Allow Music Player to modify audio settings</string>
     <string name="song_inserted_into_the_playlist">Song inserted into the Playlist</string>
     <string name="playlist_created">Playlist created</string>
+    <string name="restart_app">Restart App</string>
+    <string name="ad_will_be_shown_after_this">Ad will be shown After this</string>
 </resources>

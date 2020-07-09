@@ -1,6 +1,7 @@
 package code.name.player.musicplayer.ui.activities
 
 import android.os.Bundle
+import android.os.Handler
 import android.transition.TransitionManager
 import android.view.LayoutInflater
 import android.view.MenuItem
@@ -13,6 +14,7 @@ import code.name.player.musicplayer.ui.activities.base.AbsMusicServiceActivity
 import com.facebook.ads.AdSize
 import com.facebook.ads.AdView
 import com.facebook.ads.AudienceNetworkAds
+import com.facebook.ads.InterstitialAd
 import kotlinx.android.synthetic.main.activity_equalizer.*
 
 
@@ -20,6 +22,7 @@ import kotlinx.android.synthetic.main.activity_equalizer.*
 class EqualizerActivity : AbsMusicServiceActivity(), AdapterView.OnItemSelectedListener {
 
     private var adView: AdView? = null
+    private var interstitialAd: InterstitialAd? = null
     /*private val mListener = { buttonView, isChecked ->
         when (buttonView.getId()) {
             R.id.equalizerSwitch -> {
@@ -68,8 +71,13 @@ class EqualizerActivity : AbsMusicServiceActivity(), AdapterView.OnItemSelectedL
         // Instantiate an AdView object.
         // NOTE: The placement ID from the Facebook Monetization Manager identifies your App.
         // To get test ads, add IMG_16_9_APP_INSTALL# to your placement id. Remove this when your app is ready to serve real ads.
-        adView = AdView(this, "266586284404690_267130754350243", AdSize.BANNER_HEIGHT_50)
-
+        adView = AdView(this, "266586284404690_272578913805427", AdSize.BANNER_HEIGHT_50)
+        interstitialAd = InterstitialAd(this, "266586284404690_272578493805469")
+        val handler = Handler()
+        handler.postDelayed(Runnable { // Check if interstitialAd has been loaded successfully
+            Toast.makeText(this, getString(R.string.ad_will_be_shown_after_this), Toast.LENGTH_SHORT).show()
+            interstitialAd?.loadAd()
+        }, 15000)
         // Find the Ad Container
 
         // Find the Ad Container
@@ -208,6 +216,9 @@ class EqualizerActivity : AbsMusicServiceActivity(), AdapterView.OnItemSelectedL
 
     }
     override fun onDestroy() {
+        if(interstitialAd?.isAdLoaded!!) {
+            interstitialAd!!.show()
+        }
         if (adView != null) adView!!.destroy()
         super.onDestroy()
     }

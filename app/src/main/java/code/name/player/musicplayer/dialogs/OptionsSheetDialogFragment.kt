@@ -101,9 +101,6 @@ class OptionsSheetDialogFragment : RoundedBottomSheetDialogFragment(), View.OnCl
         dismiss()
     }
 
-    private fun prepareBugReport() {
-    }
-
     private fun shareApp() {
         val shareIntent = ShareCompat.IntentBuilder.from(activity)
                 .setType("songText/plain")

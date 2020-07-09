@@ -31,6 +31,7 @@ import code.name.player.musicplayer.util.MusicUtil
 import code.name.player.musicplayer.util.NavigationUtil
 import code.name.player.musicplayer.util.PreferenceUtil
 import code.name.player.musicplayer.util.RetroUtil
+import com.afollestad.materialdialogs.MaterialDialog
 import java.io.File
 
 abstract class AbsPlayerFragment : AbsMusicServiceFragment(), Toolbar.OnMenuItemClickListener, PaletteColorHolder, PlayerAlbumCoverFragment.Callbacks {
@@ -140,16 +141,20 @@ abstract class AbsPlayerFragment : AbsMusicServiceFragment(), Toolbar.OnMenuItem
                 val settingsCanWrite = Settings.System.canWrite(context2)
                 if (!settingsCanWrite)
                 {
-                    AlertDialog.Builder(context2)
-                            .setTitle(context2.getString(R.string.set_ringtone))
-                            .setMessage(context2.getString(R.string.set_ringtone_allow_permission_messege))
-                            .setPositiveButton(android.R.string.ok) { _, _ ->
-                                val intent = Intent(Settings.ACTION_MANAGE_WRITE_SETTINGS)
-                                intent.data = Uri.parse("package:" + context2.applicationContext.packageName)
-                                context2.startActivity(intent)
-                            }
-                            .setNegativeButton(android.R.string.cancel, null)
-                            .create().show()
+                    context2?.let {
+                        MaterialDialog.Builder(it)
+                                .title(context2.getString(R.string.set_ringtone))
+                                .content(context2.getString(R.string.set_ringtone_allow_permission_messege))
+                                .positiveText(android.R.string.ok)
+                                .onPositive { dialog, which ->
+                                    val intent = Intent(Settings.ACTION_MANAGE_WRITE_SETTINGS)
+                                    intent.data = Uri.parse("package:" + context2.applicationContext.packageName)
+                                    context2.startActivity(intent)
+                                }
+                                .negativeText(android.R.string.cancel)
+                                .onNegative { dialog, which ->  }
+                                .show()
+                    }
                 }
                 else
                 {
