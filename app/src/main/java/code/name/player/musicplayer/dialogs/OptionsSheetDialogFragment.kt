@@ -71,13 +71,14 @@ class OptionsSheetDialogFragment : RoundedBottomSheetDialogFragment(), View.OnCl
         actionRate.setOnClickListener(this)
         actionShare.setOnClickListener(this)
        // actionBugReport.setOnClickListener(this)
+        /*
         buyProContainer.apply {
             setCardBackgroundColor(ThemeStore.accentColor(context!!))
             visibility = if (!App.isProVersion) View.VISIBLE else View.GONE
             setOnClickListener {
                 NavigationUtil.goToProVersion(context)
             }
-        }
+        } */
     }
 
 

@@ -75,7 +75,6 @@ class EqualizerActivity : AbsMusicServiceActivity(), AdapterView.OnItemSelectedL
         interstitialAd = InterstitialAd(this, "266586284404690_272578493805469")
         val handler = Handler()
         handler.postDelayed(Runnable { // Check if interstitialAd has been loaded successfully
-            Toast.makeText(this, getString(R.string.ad_will_be_shown_after_this), Toast.LENGTH_SHORT).show()
             interstitialAd?.loadAd()
         }, 15000)
         // Find the Ad Container
