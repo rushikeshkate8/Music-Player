@@ -9,6 +9,7 @@
     <style name="Theme.RetroMusic.Light" parent="Theme.RetroMusic.Base.Light">
         <item name="android:statusBarColor">@android:color/transparent</item>
         <item name="android:windowSharedElementsUseOverlay">false</item>
+        <item name="android:windowBackground">@color/md_white_1000</item>
         <item name="android:textViewStyle">@style/TextViewStyleIm</item>
     </style>
 
