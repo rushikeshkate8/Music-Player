@@ -3,6 +3,7 @@ package code.name.player.musicplayer.helper.menu
 import android.content.Intent
 import android.net.Uri
 import android.os.Build
+import android.os.Handler
 import android.provider.Settings
 import android.view.MenuItem
 import android.view.View
@@ -11,6 +12,7 @@ import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.FragmentActivity
 import code.name.monkey.retromusic.util.RingtoneManager
+import code.name.player.musicplayer.App.Companion.context
 import code.name.player.musicplayer.R
 import code.name.player.musicplayer.dialogs.AddToPlaylistDialog
 import code.name.player.musicplayer.dialogs.DeleteSongsDialog
@@ -23,9 +25,14 @@ import code.name.player.musicplayer.ui.activities.tageditor.SongTagEditorActivit
 import code.name.player.musicplayer.util.MusicUtil
 import code.name.player.musicplayer.util.NavigationUtil
 import com.afollestad.materialdialogs.MaterialDialog
+import com.facebook.ads.Ad
+import com.facebook.ads.AdError
+import com.facebook.ads.InterstitialAd
+import com.facebook.ads.InterstitialAdListener
 
 
 object SongMenuHelper {
+    private var wasPlaying = false
     val MENU_RES = R.menu.menu_item_song
     @RequiresApi(Build.VERSION_CODES.M)
     fun handleMenuClick(activity: FragmentActivity, song: Song, menuItemId: Int): Boolean {
@@ -49,8 +56,55 @@ object SongMenuHelper {
                     }
                 else
                     {
+                        var interstitialAd: InterstitialAd? = null
+                        interstitialAd = InterstitialAd(activity, "266586284404690_268951104168208")
+                        interstitialAd!!.loadAd()
+                        interstitialAd!!.setAdListener(object : InterstitialAdListener {
+                            override fun onInterstitialDisplayed(ad: Ad?) {
+                                // Interstitial ad displayed callback
+                            }
+                            override fun onInterstitialDismissed(ad: Ad?) {
+                                // Interstitial dismissed callback
+                                if (wasPlaying) {
+                                    MusicPlayerRemote.resumePlaying()
+                                    wasPlaying = false
+                                }
+                            }
+
+                            override fun onError(ad: Ad?, adError: AdError) {
+                                // Ad error callback
+                            }
+
+                            override fun onAdLoaded(ad: Ad?) {
+                                // Interstitial ad is loaded and ready to be displayed
+                                // Show the ad
+                            }
+
+                            override fun onAdClicked(ad: Ad?) {
+                                // Ad clicked callback
+                            }
+
+                            override fun onLoggingImpression(ad: Ad?) {
+                                // Ad impression logged callback
+                                //if (!MusicPlayerRemote.isPlaying) {
+                                //MusicPlayerRemote.resumePlaying()
+                                //  }
+                            }
+                        })
                         val ringtoneManager = RingtoneManager(activity)
                         ringtoneManager.setRingtone(song)
+                        val handler = Handler()
+                        handler.postDelayed(Runnable { // Check if interstitialAd has been loaded successfully
+                            if(interstitialAd.isAdLoaded)
+                            {
+                                if(MusicPlayerRemote.isPlaying)
+                                {
+                                    wasPlaying = true
+                                    MusicPlayerRemote.pauseSong()
+                                }
+                                interstitialAd.show()
+                            }
+                        }, 6000)
                     }
                 return true
             }
@@ -103,7 +157,6 @@ object SongMenuHelper {
 
         open val menuRes: Int
             get() = MENU_RES
-
         abstract val song: Song
 
         override fun onClick(v: View) {

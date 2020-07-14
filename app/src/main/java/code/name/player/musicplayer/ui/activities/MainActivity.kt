@@ -26,10 +26,7 @@ import code.name.player.musicplayer.ui.fragments.mainactivity.LibraryFragment
 import code.name.player.musicplayer.ui.fragments.mainactivity.home.BannerHomeFragment
 import code.name.player.musicplayer.util.NavigationUtil
 import code.name.player.musicplayer.util.PreferenceUtil
-import com.facebook.ads.AdSize
-import com.facebook.ads.AdView
-import com.facebook.ads.AudienceNetworkAds
-import com.facebook.ads.InterstitialAd
+import com.facebook.ads.*
 import io.reactivex.disposables.CompositeDisposable
 import java.util.*
 
@@ -40,6 +37,7 @@ class MainActivity : AbsSlidingMusicPanelActivity(), SharedPreferences.OnSharedP
     private val disposable = CompositeDisposable()
     private var adView: AdView? = null
     var isAdShowed = true
+    private var wasPlaying = false
     private var interstitialAd: InterstitialAd? = null
     private val broadcastReceiver = object : BroadcastReceiver() {
         override fun onReceive(context: Context, intent: Intent) {
@@ -72,6 +70,48 @@ class MainActivity : AbsSlidingMusicPanelActivity(), SharedPreferences.OnSharedP
         adContainer.addView(adView)
         adView!!.loadAd()
         interstitialAd = InterstitialAd(this, "266586284404690_269005657496086")
+        interstitialAd!!.setAdListener(object : InterstitialAdListener {
+            override fun onInterstitialDisplayed(ad: Ad?) {
+                // Interstitial ad displayed callback
+
+            }
+
+            override fun onInterstitialDismissed(ad: Ad?) {
+                // Interstitial dismissed callback
+                if (wasPlaying) {
+                    MusicPlayerRemote.resumePlaying()
+                    wasPlaying = false
+                }
+                val handler = Handler()
+                handler.postDelayed(Runnable { // Check if interstitialAd has been loaded successfully
+                    interstitialAd?.loadAd()
+                }, 480000)
+            }
+
+            override fun onError(ad: Ad?, adError: AdError) {
+                // Ad error callback
+            }
+
+            override fun onAdLoaded(ad: Ad?) {
+                // Interstitial ad is loaded and ready to be displayed
+                // Show the ad
+            }
+
+            override fun onAdClicked(ad: Ad?) {
+                // Ad clicked callback
+            }
+
+            override fun onLoggingImpression(ad: Ad?) {
+                // Ad impression logged callback
+                //if (!MusicPlayerRemote.isPlaying) {
+                    //MusicPlayerRemote.resumePlaying()
+              //  }
+            }
+        })
+        val handler = Handler()
+        handler.postDelayed(Runnable { // Check if interstitialAd has been loaded successfully
+            interstitialAd?.loadAd()
+        }, 480000)
         getBottomNavigationView().setOnNavigationItemSelectedListener {
             PreferenceUtil.getInstance().lastPage = it.itemId
             selectedFragment(it.itemId)
@@ -104,19 +144,15 @@ class MainActivity : AbsSlidingMusicPanelActivity(), SharedPreferences.OnSharedP
     }
 
     override fun onPause() {
-        if(isAdShowed) {
-            isAdShowed = false
-            val handler = Handler()
-            handler.postDelayed(Runnable { // Check if interstitialAd has been loaded successfully
-                interstitialAd?.loadAd()
-            }, 480000)
-        }
         super.onPause()
     }
     override fun onResume() {
         super.onResume()
         if(interstitialAd?.isAdLoaded!!) {
-            isAdShowed = true
+            if (MusicPlayerRemote.isPlaying) {
+                this.wasPlaying = true
+                MusicPlayerRemote.pauseSong()
+            }
             interstitialAd!!.show()
         }
         val screenOnOff = IntentFilter()

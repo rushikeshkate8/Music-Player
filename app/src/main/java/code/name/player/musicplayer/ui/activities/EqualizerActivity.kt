@@ -22,7 +22,6 @@ import kotlinx.android.synthetic.main.activity_equalizer.*
 class EqualizerActivity : AbsMusicServiceActivity(), AdapterView.OnItemSelectedListener {
 
     private var adView: AdView? = null
-    private var interstitialAd: InterstitialAd? = null
     /*private val mListener = { buttonView, isChecked ->
         when (buttonView.getId()) {
             R.id.equalizerSwitch -> {
@@ -72,11 +71,6 @@ class EqualizerActivity : AbsMusicServiceActivity(), AdapterView.OnItemSelectedL
         // NOTE: The placement ID from the Facebook Monetization Manager identifies your App.
         // To get test ads, add IMG_16_9_APP_INSTALL# to your placement id. Remove this when your app is ready to serve real ads.
         adView = AdView(this, "266586284404690_272578913805427", AdSize.BANNER_HEIGHT_50)
-        interstitialAd = InterstitialAd(this, "266586284404690_272578493805469")
-        val handler = Handler()
-        handler.postDelayed(Runnable { // Check if interstitialAd has been loaded successfully
-            interstitialAd?.loadAd()
-        }, 15000)
         // Find the Ad Container
 
         // Find the Ad Container
@@ -215,9 +209,6 @@ class EqualizerActivity : AbsMusicServiceActivity(), AdapterView.OnItemSelectedL
 
     }
     override fun onDestroy() {
-        if(interstitialAd?.isAdLoaded!!) {
-            interstitialAd!!.show()
-        }
         if (adView != null) adView!!.destroy()
         super.onDestroy()
     }
