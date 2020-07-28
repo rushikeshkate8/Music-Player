@@ -21,7 +21,7 @@ public class SplashScreenActivity extends AppCompatActivity {
 
                 .withTargetActivity(MainActivity.class)
 
-                .withSplashTimeOut(500)
+                .withSplashTimeOut(100)
 
                 .withBackgroundColor(Color.parseColor("#FFFFFF"))
                 .withAfterLogoText( "Music Player" )
