@@ -121,9 +121,11 @@ object MusicPlayerRemote {
         try {
             cursor = context.contentResolver.query(uri, projection, null, null, null)
             cursor.use { it ->
-                if (it.moveToFirst()) {
-                    val columnIndex = it.getColumnIndexOrThrow(column)
-                    return it.getString(columnIndex)
+                if (it != null) {
+                    if (it.moveToFirst()) {
+                        val columnIndex = it?.getColumnIndexOrThrow(column)
+                        return columnIndex?.let { it1 -> it.getString(it1) }
+                    }
                 }
             }
         } catch (e: Exception) {

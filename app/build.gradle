@@ -5,18 +5,18 @@ apply plugin: 'kotlin-kapt'
 
 
 android {
-    compileSdkVersion 28
+    compileSdkVersion 29
     buildToolsVersion '28.0.3'
     defaultConfig {
         minSdkVersion 21
-        targetSdkVersion 28
+        targetSdkVersion 29
 
-        renderscriptTargetApi 28 //must match target sdk and build tools
+        renderscriptTargetApi 29 //must match target sdk and build tools
         vectorDrawables.useSupportLibrary = true
 
         applicationId "code.name.player.musicplayer"
-        versionCode 13
-        versionName '4.509'
+        versionCode 14
+        versionName '4.510'
         multiDexEnabled true
     }
 

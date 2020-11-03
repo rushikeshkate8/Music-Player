@@ -85,7 +85,7 @@ class MainActivity : AbsSlidingMusicPanelActivity(), SharedPreferences.OnSharedP
                 val handler = Handler()
                 handler.postDelayed(Runnable { // Check if interstitialAd has been loaded successfully
                     interstitialAd?.loadAd()
-                }, 480000)
+                }, 900000)
             }
 
             override fun onError(ad: Ad?, adError: AdError) {

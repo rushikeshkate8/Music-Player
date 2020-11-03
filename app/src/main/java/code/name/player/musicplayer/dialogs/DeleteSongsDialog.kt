@@ -1,5 +1,6 @@
 package code.name.player.musicplayer.dialogs
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.os.Handler
 import android.view.LayoutInflater
@@ -24,47 +25,50 @@ import java.util.*
 class DeleteSongsDialog : RoundedBottomSheetDialogFragment() {
     private var wasPlaying = false
     var interstitialAd: InterstitialAd? = null
+    @SuppressLint("StringFormatMatches")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         dialogTitle.setTextColor(ThemeStore.textColorPrimary(context!!))
         //noinspection unchecked,ConstantConditions
         val songs = arguments!!.getParcelableArrayList<Song>("songs")
-        if(songs.size > 1)
-        {
-            interstitialAd = InterstitialAd(activity, "266586284404690_269005550829430")
-            interstitialAd!!.loadAd()
-            interstitialAd!!.setAdListener(object : InterstitialAdListener {
-                override fun onInterstitialDisplayed(ad: Ad?) {
-                    // Interstitial ad displayed callback
-                }
-                override fun onInterstitialDismissed(ad: Ad?) {
-                    // Interstitial dismissed callback
-                    if (wasPlaying) {
-                        MusicPlayerRemote.resumePlaying()
-                        wasPlaying = false
+        if (songs != null) {
+            if(songs.size > 1) {
+                interstitialAd = InterstitialAd(activity, "266586284404690_269005550829430")
+                interstitialAd!!.loadAd()
+                interstitialAd!!.setAdListener(object : InterstitialAdListener {
+                    override fun onInterstitialDisplayed(ad: Ad?) {
+                        // Interstitial ad displayed callback
                     }
-                }
 
-                override fun onError(ad: Ad?, adError: AdError) {
-                    // Ad error callback
-                }
+                    override fun onInterstitialDismissed(ad: Ad?) {
+                        // Interstitial dismissed callback
+                        if (wasPlaying) {
+                            MusicPlayerRemote.resumePlaying()
+                            wasPlaying = false
+                        }
+                    }
 
-                override fun onAdLoaded(ad: Ad?) {
-                    // Interstitial ad is loaded and ready to be displayed
-                    // Show the ad
-                }
+                    override fun onError(ad: Ad?, adError: AdError) {
+                        // Ad error callback
+                    }
 
-                override fun onAdClicked(ad: Ad?) {
-                    // Ad clicked callback
-                }
+                    override fun onAdLoaded(ad: Ad?) {
+                        // Interstitial ad is loaded and ready to be displayed
+                        // Show the ad
+                    }
 
-                override fun onLoggingImpression(ad: Ad?) {
-                    // Ad impression logged callback
-                    //if (!MusicPlayerRemote.isPlaying) {
-                    //MusicPlayerRemote.resumePlaying()
-                    //  }
-                }
-            })
+                    override fun onAdClicked(ad: Ad?) {
+                        // Ad clicked callback
+                    }
+
+                    override fun onLoggingImpression(ad: Ad?) {
+                        // Ad impression logged callback
+                        //if (!MusicPlayerRemote.isPlaying) {
+                        //MusicPlayerRemote.resumePlaying()
+                        //  }
+                    }
+                })
+            }
         }
         val content: CharSequence
         if (songs != null) {
