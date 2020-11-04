@@ -15,8 +15,8 @@ android {
         vectorDrawables.useSupportLibrary = true
 
         applicationId "code.name.player.musicplayer"
-        versionCode 14
-        versionName '4.510'
+        versionCode 15
+        versionName '4.511'
         multiDexEnabled true
     }
 

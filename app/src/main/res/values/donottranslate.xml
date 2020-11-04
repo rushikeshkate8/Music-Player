@@ -10,7 +10,7 @@
         <item>code_name_monkey_donate_7</item>
     </string-array>
 
-    <string name="app_name" translatable="false">Music Player</string>
+    <string name="app_name" translatable="false">Skye Music</string>
     <string name="google_plus" translatable="false">Google Plus</string>
     <string name="git_hub" translatable="false">GitHub</string>
     <string name="social_buttons" translatable="false">Social Buttons</string>

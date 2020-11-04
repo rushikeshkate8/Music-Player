@@ -44,6 +44,8 @@ class SettingsActivity : AbsBaseActivity(), ColorChooserDialog.ColorCallback, Sh
         recreate()
     }
 
+
+
     override fun onColorChooserDismissed(dialog: ColorChooserDialog) {
 
     }
@@ -51,13 +53,13 @@ class SettingsActivity : AbsBaseActivity(), ColorChooserDialog.ColorCallback, Sh
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_settings)
-        setStatusbarColorAuto()
-        setNavigationbarColorAuto()
         AudienceNetworkAds.initialize(this)
         adView = AdView(this, "266586284404690_267119051018080", AdSize.BANNER_HEIGHT_50)
         val adContainer = findViewById<View>(R.id.settingActivityBanner) as LinearLayout
         adContainer.addView(adView)
         adView!!.loadAd()
+        setStatusbarColorAuto()
+        setNavigationbarColorAuto()
         setLightNavigationBar(true)
 
         setupToolbar()
@@ -123,7 +125,10 @@ class SettingsActivity : AbsBaseActivity(), ColorChooserDialog.ColorCallback, Sh
         super.onResume()
         PreferenceUtil.getInstance().registerOnSharedPreferenceChangedListener(this)
     }
-
+    override fun onDestroy() {
+        super.onDestroy()
+        if (adView != null) adView!!.destroy()
+    }
     override fun onSharedPreferenceChanged(sharedPreferences: SharedPreferences, key: String) {
         if (key == PreferenceUtil.PROFILE_IMAGE_PATH) {
             recreate()
